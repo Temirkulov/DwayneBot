@@ -2,6 +2,7 @@ const Discord = require('discord.js')
 const command = require('./command')
 const client = new Discord.Client()
 const config = require ('./config.json')
+require('events').EventEmitter.defaultMaxListeners = 20;
 
 client.on('ready', () => {
     console.log('The client is ready!')
@@ -117,17 +118,20 @@ client.on('ready', () => {
             }
     })
     command(client,'c-ask',(message) => {
-        if(message.author.id === "348296915143884801") {
+        if(message.author.id === "348296915143884801","692062388991688814")  {
             const channelIDs = `716745665643937862`
             client.channels.cache.get(channelIDs).send(":taco: I'm feeling a little extra hungry today, could I buy \`1022`\ tacos? `Type 'sell' to sell them tacos!`")
+            message.react('✅')
         }
 
     })
     command(client,'c-busy',(message) => {
-        if(message.author.id === "348296915143884801") {
+        if(message.author.id === "348296915143884801","692062388991688814") {
             const channelIDs = `716745665643937862`
             client.channels.cache.get(channelIDs).send(":rage: Well it seems like everyone working here is lazy, I'm going to the fast food joint across the road.")
+            message.react('✅')
         }
+
 
     })
     
