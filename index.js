@@ -167,9 +167,9 @@ client.on('ready', () => {
             `Uptime: **${hours} hours ${minutes} minutes ${seconds} seconds**
             Creator: **The Rock**
             Servers: **${client.guilds.cache.size}**
-            Version: **1.0.0.05**
+            Version: **1.0.0.051**
             System: **Windows 10**
-            Hosting Provider: **Heroku**`
+            Host: **Heroku**`
         },
         
         )
