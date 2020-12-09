@@ -161,13 +161,12 @@ client.on('ready', () => {
         .setTitle('DwayneBot statistics')
         .setDescription('The prefix is `;`')
         .setColor('#FEFFA3')
-        .setThumbnail(logo)
         .addFields(
              {name: "Bot statistics", value: 
             `Uptime: **${hours} hours ${minutes} minutes ${seconds} seconds**
             Creator: **The Rock**
             Servers: **${client.guilds.cache.size}**
-            Version: **1.0.0.051**
+            Version: **1.0.0.06**
             System: **Windows 10**
             Host: **Heroku**`
         },
