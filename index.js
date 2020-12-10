@@ -67,7 +67,8 @@ client.on('ready', () => {
             {name: "Help Commands", value: 
             `**Help**: Lists out the Help commands
 **ping**: Checks the bot's ping
-**stats**: Displays the Dwaynebot Statistics`
+**stats**: Displays the Dwaynebot Statistics
+**update**: Shows the new bot features`
         }, 
         {name:"Admin Commands", value:
         `**cc/clearchannel**: Clears last 100 messages
@@ -200,16 +201,22 @@ Host: **Heroku**`)
       const embed = new Discord.MessageEmbed()
 
       .setColor('#FEFFA3')
+      .setThumbnail(logo)
       .setTitle('Bot Information')
       .addFields( {name: `New features (1.0.0.1)`, value:`
--update command
-so you can view the updates for the current version of the bot and the new features added!
--coinflip command
-allows you to flip a coin
--A brand new look on mobile version of Discord.`},
+-**update command**
+So you can view the updates for the current version of the bot and the new features added!
+-**coinflip command**
+Allows you to flip a coin
+-**Memory usage**
+Updated the bot statistics page, allowing you to view the memory usage
+**Mobile Support**
+A brand new look on mobile version of Discord.`},
       {name:`Next Version`, value:
       `1.0.0.15`}
     )
+
+    message.channel.send(embed)
     })
 
 
