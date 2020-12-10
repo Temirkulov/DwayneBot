@@ -168,7 +168,7 @@ client.on('ready', () => {
 Creator: **The Rock**
 Servers: **${client.guilds.cache.size}**
 Version: **1.0.0.1**
-Memory Usage: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}mb
+Memory Usage: **${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}mb**
 System: **Windows 10**
 Host: **Heroku**`)
         .setTimestamp()
