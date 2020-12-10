@@ -44,8 +44,10 @@ client.on('ready', () => {
     
     command(client, 'invite', (message) => {
         const embed = new Discord.MessageEmbed()
-        .setTitle('Invite DwayneBot')
-        .setURL('https://discord.com/oauth2/authorize?client_id=780813319137263618&permissions=8&scope=bot')
+        .addField('Invite DwayneBot',`[Invitelink(Recommended)](https://discord.com/api/oauth2/authorize?client_id=780813319137263618&permissions=2147483639&scope=bot)
+        [Invite link (Admin)](https://discord.com/oauth2/authorize?client_id=780813319137263618&permissions=8&scope=bot)`)
+             
+        
         .setAuthor(message.author.username)
 
         message.channel.send(embed)
@@ -64,19 +66,19 @@ client.on('ready', () => {
         .addFields(
             {name: "Help Commands", value: 
             `**Help**: Lists out the Help commands
-            **ping**: Checks the bot's ping
-            **stats**: Displays the Dwaynebot Statistics`
+**ping**: Checks the bot's ping
+**stats**: Displays the Dwaynebot Statistics`
         }, 
         {name:"Admin Commands", value:
         `**cc/clearchannel**: Clears last 100 messages
-        **kick**: Kicks a specified user
-        **ban**: Bans a specified user
+**kick**: Kicks a specified user
+**ban**: Bans a specified user
         `
     },
     {name: "Developer Commands", value: 
     `**c-ask**: Customer Prank - ask to sell
-    **c-busy**: Customer Prank - Everyone is Lazy
-    **status**: Change Bot Status`
+**c-busy**: Customer Prank - Everyone is Lazy
+**status**: Change Bot Status`
 }
         )
         message.channel.send(embed)
@@ -155,28 +157,61 @@ client.on('ready', () => {
       let seconds = Math.floor(client.uptime / 1000) % 60;
       const logo = 
         'https://static.bangkokpost.com/media/content/20200903/c1_3738615.jpg'
-          
       const embed = new Discord.MessageEmbed()
         
         .setTitle('DwayneBot statistics')
         .setDescription('The prefix is `;`')
         .setColor('#FEFFA3')
-        .addFields(
-             {name: "Bot statistics", value: 
-            `Uptime: **${hours} hours ${minutes} minutes ${seconds} seconds**
-            Creator: **The Rock**
-            Servers: **${client.guilds.cache.size}**
-            Version: **1.0.0.06**
-            System: **Windows 10**
-            Host: **Heroku**`
-        },
-        
-        )
+        .setThumbnail(logo)
+        .addField("Bot statistics",` 
+        Uptime: **${hours} hours ${minutes} minutes ${seconds} seconds**
+Creator: **The Rock**
+Servers: **${client.guilds.cache.size}**
+Version: **1.0.0.1**
+Memory Usage: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}mb
+System: **Windows 10**
+Host: **Heroku**`)
         .setTimestamp()
     
         
         message.channel.send(embed)
     }) 
+    command(client, 'coinflip',(message) => {
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+          }
+        var msg2 = Array(2);
+		msg2[1] = "Heads";
+	    msg2[2] = "Tails";
+        var x = getRandomInt(0, 8);
+		if (x < 4){
+			message.channel.send(msg2[1]);
+		}
+		else{
+			message.channel.send(msg2[2]);
+		}
+
+    }) 
+    command(client, 'update',(message) =>{
+        const logo = 
+        'https://static.bangkokpost.com/media/content/20200903/c1_3738615.jpg'
+      const embed = new Discord.MessageEmbed()
+
+      .setColor('#FEFFA3')
+      .setTitle('Bot Information')
+      .addFields( {name: `New features (1.0.0.1)`, value:`
+-update command
+so you can view the updates for the current version of the bot and the new features added!
+-coinflip command
+allows you to flip a coin
+-A brand new look on mobile version of Discord.`},
+      {name:`Next Version`, value:
+      `1.0.0.15`}
+    )
+    })
+
 
 }) 
 client.on('message', message => {
