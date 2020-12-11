@@ -69,7 +69,7 @@ client.on('ready', () => {
 **ping**: Checks the bot's ping
 **stats**: Displays the Dwaynebot Statistics
 **update**: Shows the new bot features
-**pickup**: Sends pickup lines
+**pickup**: Sends pickup lines - inspired by lacking ✰#0959
 **rock**: Built Different`
         }, 
         {name:"Admin Commands", value:
@@ -207,7 +207,7 @@ Host: **Heroku**`)
       .setTitle('Bot Information')
       .addFields( {name: `New features (1.0.0.15)`, value:`
 -**pickup command**
-So you can use them in the future:wink:
+So you can use them in the future:wink: - inspired by lacking ✰#0959
 -**rock command**
 Still in the works, but it vends cool quotes!
 -**Minor fixes**
