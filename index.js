@@ -41,11 +41,11 @@ client.on('ready', () => {
             }
         })
     })
-    
+
     command(client, 'invite', (message) => {
         const embed = new Discord.MessageEmbed()
-        .addField('Invite DwayneBot',`[Invitelink(Recommended)](https://discord.com/api/oauth2/authorize?client_id=780813319137263618&permissions=2147483639&scope=bot)
-        [Invite link (Admin)](https://discord.com/oauth2/authorize?client_id=780813319137263618&permissions=8&scope=bot)`)
+        .addField('Invite DwayneBot',`[Invite link (Recommended)](https://discord.com/api/oauth2/authorize?client_id=780813319137263618&permissions=2147483639&scope=bot)
+[Invite link (Admin)](https://discord.com/oauth2/authorize?client_id=780813319137263618&permissions=8&scope=bot)`)
              
         
         .setAuthor(message.author.username)
@@ -68,7 +68,9 @@ client.on('ready', () => {
             `**Help**: Lists out the Help commands
 **ping**: Checks the bot's ping
 **stats**: Displays the Dwaynebot Statistics
-**update**: Shows the new bot features`
+**update**: Shows the new bot features
+**pickup**: Sends pickup lines
+**rock**: Built Different`
         }, 
         {name:"Admin Commands", value:
         `**cc/clearchannel**: Clears last 100 messages
@@ -168,7 +170,7 @@ client.on('ready', () => {
         Uptime: **${hours} hours ${minutes} minutes ${seconds} seconds**
 Creator: **The Rock**
 Servers: **${client.guilds.cache.size}**
-Version: **1.0.0.1**
+Version: **1.0.0.15**
 Memory Usage: **${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}mb**
 System: **Windows 10**
 Host: **Heroku**`)
@@ -203,24 +205,58 @@ Host: **Heroku**`)
       .setColor('#FEFFA3')
       .setThumbnail(logo)
       .setTitle('Bot Information')
-      .addFields( {name: `New features (1.0.0.1)`, value:`
--**update command**
-So you can view the updates for the current version of the bot and the new features added!
--**coinflip command**
-Allows you to flip a coin
--**Memory usage**
-Updated the bot statistics page, allowing you to view the memory usage
-**Mobile Support**
-A brand new look on mobile version of Discord.`},
+      .addFields( {name: `New features (1.0.0.15)`, value:`
+-**pickup command**
+So you can use them in the future:wink:
+-**rock command**
+Still in the works, but it vends cool quotes!
+-**Minor fixes**
+Minor fixes and bugs.`},
       {name:`Next Version`, value:
-      `1.0.0.15`}
+      `1.0.0.20`}
     )
 
     message.channel.send(embed)
     })
+    command(client, "rock",(message) => {
+        var tests = ["Built different💯🥶",
+    "Cut from different cloth📠💯",
+"🥶Race:First place💯🏎️💨",
+"Breed:Different🥶💯",
+ "When the doc tried to draw my blood, ice came out :cold_face: :100:"];
+        var test = Math.floor(Math.random() * tests.length);
 
-
-}) 
+    message.channel.send(String([tests[test]]));
+    })
+    command(client, "pickup",(message) => {
+        var tests = ["Are you a keyboard ? Because you are my type",
+    "I thought Happiness starts with H. But why does mine starts with U",
+    "feel my shirt.............its boyfriend material",
+    "My doctor says I'm lacking vitamin U",
+    "If you were a triangle you'd be acute one",
+    "Are you a camera? Because every time I look at you, I smile!",
+    "Do you like science because I've got my ion you",
+    "Have you been to the doctor's lately? Cause I think you're lacking some vitamin me",
+    "are you a banana? cause i find you a peeling",
+    "are you a 90 degree angle? Cause you are looking right",
+    "Is your name Google? Because you have everything I've been searching for.",
+    "Do your legs hurt from running through my dreams all night?",
+    "If a fat man puts you in a bag at night, don't worry I told Santa I wanted you for Christmas",
+    "Thank god I'm wearing gloves because you are too hot to handle",
+    "girl, when u go to hell, hades resigns cos u are hotter than hell",
+    "even if there wasn't gravity on earth, I'd still fall for you",
+    "Are you lost ma'am? Because heaven is a long way from here",
+    "So, aside from taking my breath away, what do you do for a living?",
+    "If covid-19 doesn’t take you out.. can I?",
+    "You can't spell virus without U and I",
+    "You can’t spell quarantine without “u r a q t”",
+    "Did your license get suspended for driving all these guys crazy?",
+    "Are you the cure for Alzheimer’s? Because you’re unforgettable",
+    "Are you australian? Because you meet all of my koalafications"];
+        var test = Math.floor(Math.random() * tests.length);
+         message.channel.send(String([tests[test]]));  
+        
+        })
 client.on('message', message => {
     if (message.content.includes("<@!348296915143884801>") ||
         (/\brock\b/i.test(message.content)) )
@@ -244,6 +280,7 @@ client.on('message', message => {
     }
 
 });
+})
 
 
 client.login(config.token)
