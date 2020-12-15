@@ -81,6 +81,7 @@ client.on('ready', () => {
     {name: "Developer Commands", value: 
     `**c-ask**: Customer Prank - ask to sell
 **c-busy**: Customer Prank - Everyone is Lazy
+**c-sell**: Customer Prank - Sells to The Rock
 **status**: Change Bot Status`
 }
         )
@@ -135,10 +136,17 @@ client.on('ready', () => {
     command(client,'c-ask',(message) => {
         if(message.author.id === "348296915143884801","692062388991688814","463174263973871626")  {
             const channelIDs = `716745665643937862`
-            client.channels.cache.get(channelIDs).send(":taco: I'm feeling a little extra hungry today, could I buy \`1022`\ tacos? `Type 'sell' to sell them tacos!`")
+            client.channels.cache.get(channelIDs).send(":taco: I'm feeling a little extra hungry today, could I buy \`1050`\ tacos? `Type 'sell' to sell them tacos!`")
             message.react('✅')
         }
 
+    })
+    command(client,'c-sell',(message) => {
+        if(message.author.id === "348296915143884801","692062388991688814","463174263973871626")  {
+            const channelIDs = `716745665643937862`
+            client.channels.cache.get(channelIDs).send(":moneybag: Nice doing business with you **The Rock**! I believe I owe you `$10500` and heres a 10% tip of `$1050` for being awesome!")
+            message.react('✅')
+        }
     })
     command(client,'c-busy',(message) => {
         if(message.author.id === "348296915143884801","692062388991688814","463174263973871626") {
@@ -170,7 +178,7 @@ client.on('ready', () => {
         Uptime: **${hours} hours ${minutes} minutes ${seconds} seconds**
 Creator: **The Rock**
 Servers: **${client.guilds.cache.size}**
-Version: **1.0.0.15**
+Version: **1.0.0.2**
 Memory Usage: **${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}mb**
 System: **Windows 10**
 Host: **Heroku**`)
@@ -205,15 +213,13 @@ Host: **Heroku**`)
       .setColor('#FEFFA3')
       .setThumbnail(logo)
       .setTitle('Bot Information')
-      .addFields( {name: `New features (1.0.0.15)`, value:`
--**pickup command**
-So you can use them in the future:wink: - inspired by lacking ✰#0959
--**rock command**
-Still in the works, but it vends cool quotes!
--**Minor fixes**
-Minor fixes and bugs.`},
+      .addFields( {name: `New features (1.0.0.2)`, value:`
+-**Minor Fixes**
+Minor fixes and bugs, and some slight improvement to the ;rock command
+-**c-sell**
+Another huge addition to DwayneBot prank arsenal`},
       {name:`Next Version`, value:
-      `1.0.0.20`}
+      `1.0.0.25`}
     )
 
     message.channel.send(embed)
@@ -223,11 +229,18 @@ Minor fixes and bugs.`},
     "Cut from different cloth📠💯",
 "🥶Race:First place💯🏎️💨",
 "Breed:Different🥶💯",
- "When the doc tried to draw my blood, ice came out :cold_face: :100:"];
+ "When the doc tried to draw my blood, ice came out :cold_face: :100:",
+"I tried to pay attention but attention paid meI tried to pay attention but attention paid me💯🤷🥶",
+"I don't cruise control, I control the cruise:speaking_head::fax:",
+"They fed me to the wolves and i returned leading the pack:point_up_2::gorilla::100:",
+"Never in doubt, if I can’t make it with you i’ll make it without:100:",
+"We not from here:man_dancing::100::point_up:"];
         var test = Math.floor(Math.random() * tests.length);
 
     message.channel.send(String([tests[test]]));
     })
+    command(client,"sjstart",(message) => {    
+})
     command(client, "pickup",(message) => {
         var tests = ["Are you a keyboard ? Because you are my type",
     "I thought Happiness starts with H. But why does mine starts with U",
@@ -237,6 +250,7 @@ Minor fixes and bugs.`},
     "Are you a camera? Because every time I look at you, I smile!",
     "Do you like science because I've got my ion you",
     "Have you been to the doctor's lately? Cause I think you're lacking some vitamin me",
+    "boy you got my heartbeat running away :woman_running:,beating like a drum and it’s coming ur way:heart_eyes:",
     "are you a banana? cause i find you a peeling",
     "are you a 90 degree angle? Cause you are looking right",
     "Is your name Google? Because you have everything I've been searching for.",
@@ -255,7 +269,7 @@ Minor fixes and bugs.`},
     "Are you australian? Because you meet all of my koalafications"];
         var test = Math.floor(Math.random() * tests.length);
          message.channel.send(String([tests[test]]));  
-        
+    
         })
 client.on('message', message => {
     if (message.content.includes("<@!348296915143884801>") ||
@@ -281,6 +295,5 @@ client.on('message', message => {
 
 });
 })
-
 
 client.login(config.token)
