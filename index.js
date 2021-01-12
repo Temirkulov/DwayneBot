@@ -3,6 +3,7 @@ const Discord = require('discord.js')
 const command = require('./command')
 const client = new Discord.Client()
 const config = require ('./config.json')
+const whitelist = (`348296915143884801`,`692062388991688814`,`463174263973871626`,`330818210561785856`)
 require('events').EventEmitter.defaultMaxListeners = 20;
 
 client.on('ready', () => {
@@ -10,26 +11,23 @@ client.on('ready', () => {
 
     command(client, 'ping', (message) => {
         message.channel.send('Pinging...').then(sent => {
-            sent.edit(`Pong! Latency is ${sent.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);
+            sent.edit(`Pog! Latency is ${sent.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);
         })
       })
-    
-
-    command(client, 'servers', (message) => {
-        if(message.author.id === "348296915143884801") {
-          client.guilds.cache.forEach((guild) => {
-            message.channel.send(
-                `${guild.name} has a total of ${guild.memberCount} members`)
-        })} else return
+   
+    command(client, 'speedjar',message => {
+        if(message.channel.id === '788384111449473036') 
+        message.channel.send("See or Change?");
+        const collector = new Discord.MessageCollector(message.channel, m => m.channel.id === message.channel.id, { time: 10000 });
+        console.log(collector)
+        collector.on('collect', message => {
+            if (message.content == "See") {
+                message.channel.send("You Want To See Someones Spec OK!");
+            } else if (message.content == "Change") {
+                message.channel.send("You Want To Change Your Spec OK!");
+            }
+        })
     })
-    command(client, ['cc', 'clearchannel'], message => {
-        if (message.member.hasPermission('ADMINISTRATOR')) {
-            message.channel.messages.fetch().then((results) => {
-                message.channel.bulkDelete(results)
-            })
-        }
-    })
-    
     command(client, 'status', message => {
         const content = message.content.replace(';status ', '')
         if(message.author.id === "348296915143884801")
@@ -134,7 +132,7 @@ client.on('ready', () => {
             }
     })
     command(client,'c-ask',(message) => {
-        if(message.author.id === "348296915143884801","692062388991688814","463174263973871626")  {
+        if(message.author.id === whitelist)  {
             const channelIDs = `716745665643937862`
             client.channels.cache.get(channelIDs).send(":taco: I'm feeling a little extra hungry today, could I buy \`1050`\ tacos? `Type 'sell' to sell them tacos!`")
             message.react('✅')
@@ -142,14 +140,14 @@ client.on('ready', () => {
 
     })
     command(client,'c-sell',(message) => {
-        if(message.author.id === "348296915143884801","692062388991688814","463174263973871626")  {
+        if(message.author.id === whitelist)  {
             const channelIDs = `716745665643937862`
             client.channels.cache.get(channelIDs).send(":moneybag: Nice doing business with you **The Rock**! I believe I owe you `$10500` and heres a 10% tip of `$1050` for being awesome!")
             message.react('✅')
         }
     })
     command(client,'c-busy',(message) => {
-        if(message.author.id === "348296915143884801","692062388991688814","463174263973871626") {
+        if(message.author.id === whitelist) {
             const channelIDs = `716745665643937862`
             client.channels.cache.get(channelIDs).send(":rage: Well it seems like everyone working here is lazy, I'm going to the fast food joint across the road.")
             message.react('✅')
