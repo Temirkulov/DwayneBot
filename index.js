@@ -132,7 +132,7 @@ client.on('ready', () => {
             }
     })
     command(client,'c-ask',(message) => {
-        if(message.author.id === whitelist)  {
+        if(message.author.id == whitelist)  {
             const channelIDs = `716745665643937862`
             client.channels.cache.get(channelIDs).send(":taco: I'm feeling a little extra hungry today, could I buy \`1050`\ tacos? `Type 'sell' to sell them tacos!`")
             message.react('✅')
@@ -140,14 +140,14 @@ client.on('ready', () => {
 
     })
     command(client,'c-sell',(message) => {
-        if(message.author.id === whitelist)  {
+        if(message.author.id == whitelist)  {
             const channelIDs = `716745665643937862`
             client.channels.cache.get(channelIDs).send(":moneybag: Nice doing business with you **The Rock**! I believe I owe you `$10500` and heres a 10% tip of `$1050` for being awesome!")
             message.react('✅')
         }
     })
     command(client,'c-busy',(message) => {
-        if(message.author.id === whitelist) {
+        if(message.author.id == whitelist) {
             const channelIDs = `716745665643937862`
             client.channels.cache.get(channelIDs).send(":rage: Well it seems like everyone working here is lazy, I'm going to the fast food joint across the road.")
             message.react('✅')
