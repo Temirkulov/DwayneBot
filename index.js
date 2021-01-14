@@ -154,7 +154,7 @@ client.on('ready', () => {
         }
 */
 
-    })
+    
     command(client,'stats',(message) => {
         
         // client.uptime is in millseconds
