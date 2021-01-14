@@ -130,7 +130,7 @@ client.on('ready', () => {
                     `<${member.id}> You don't have permission to use this command.`
                     )
             }
-    })
+    })/*
     command(client,'c-ask',(message) => {
         if(message.author.id === "348296915143884801")  {
             const channelIDs = `716745665643937862`
@@ -152,7 +152,7 @@ client.on('ready', () => {
             client.channels.cache.get(channelIDs).send(":rage: Well it seems like everyone working here is lazy, I'm going to the fast food joint across the road.")
             message.react('✅')
         }
-
+*/
 
     })
     command(client,'stats',(message) => {
