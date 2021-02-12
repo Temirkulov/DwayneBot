@@ -14,19 +14,20 @@ client.on('ready', () => {
             sent.edit(`Pog! Latency is ${sent.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);
         })
       })
-   
+      
     command(client, 'speedjar',message => {
-        if(message.channel.id === '788384111449473036') 
-        message.channel.send("See or Change?");
-        const collector = new Discord.MessageCollector(message.channel, m => m.channel.id === message.channel.id, { time: 10000 });
-        console.log(collector)
-        collector.on('collect', message => {
-            if (message.content == "See") {
-                message.channel.send("You Want To See Someones Spec OK!");
-            } else if (message.content == "Change") {
-                message.channel.send("You Want To Change Your Spec OK!");
-            }
+        if(message.channel.id === '776985762499002408') {
+            const filter = (m) => !m.author.id === !message.author.id && m.content.includes('sell')
+        message.channel.send(":taco: I'm feeling a little extra hungry today");
+        message.channel
+        .awaitMessages(filter,{max: 2, time: 30000, errors:['time ran out']})
+        .then((collected) => {
+            console.log(collected.size);
+            const msg = collected.first();
+            console.log(msg.content);
         })
+        .catch((err) => console.log(err));
+    }
     })
     command(client, 'status', message => {
         const content = message.content.replace(';status ', '')
@@ -130,7 +131,7 @@ client.on('ready', () => {
                     `<${member.id}> You don't have permission to use this command.`
                     )
             }
-    })/*
+    })
     command(client,'c-ask',(message) => {
         if(message.author.id === "348296915143884801")  {
             const channelIDs = `716745665643937862`
@@ -152,7 +153,7 @@ client.on('ready', () => {
             client.channels.cache.get(channelIDs).send(":rage: Well it seems like everyone working here is lazy, I'm going to the fast food joint across the road.")
             message.react('✅')
         }
-*/
+
 
     
     command(client,'stats',(message) => {
@@ -290,6 +291,7 @@ client.on('message', message => {
     (/\bleela\b/i.test(message.content)) ) {
         message.react('785783420910960651'); 
     }
+})
 
 });
 })
