@@ -153,7 +153,8 @@ client.on('ready', () => {
             client.channels.cache.get(channelIDs).send(":rage: Well it seems like everyone working here is lazy, I'm going to the fast food joint across the road.")
             message.react('✅')
         }
-
+    })
+    
 
     
     command(client,'stats',(message) => {
@@ -290,10 +291,10 @@ client.on('message', message => {
     if (message.content.includes("<@!330818210561785856>") ||
     (/\bleela\b/i.test(message.content)) ) {
         message.react('785783420910960651'); 
-    }
+    }})
 })
 
-});
-})
+
+
 
 client.login(config.token)
