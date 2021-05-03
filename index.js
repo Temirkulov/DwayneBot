@@ -1,5 +1,6 @@
 const { timeStamp } = require('console');
-const Discord = require('discord.js')
+const Discord = require('discord.js');
+const { send } = require('process');
 const command = require('./command')
 const client = new Discord.Client()
 const config = require ('./config.json')
@@ -239,7 +240,27 @@ Another huge addition to DwayneBot prank arsenal`},
 
     message.channel.send(String([tests[test]]));
     })
-    command(client,"sjstart",(message) => {    
+    command(client,"m",(message) => {   
+        message.channel.send(`1 = 12,000
+        2 = 56,000
+        3 = 144,000
+        4 = 288,000
+        5 = 500,000
+        6 = 792,000
+        7 = 1,176,000
+        8 = 1,664,000
+        9 = 2,268,000
+        10 = 3,000,000
+        11 = 3,872,000
+        12 = 4,896,000
+        13 = 6,084,000
+        14 = 7,448,000
+        15 = 9,000,000
+        16 = 10,752,000
+        17 = 12,716,000
+        18 = 14,904,000
+        19 = 17,328,000
+        20 = 20,000,000`)
 })
     command(client, "pickup",(message) => {
         var tests = ["Are you a keyboard ? Because you are my type",
