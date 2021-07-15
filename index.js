@@ -260,7 +260,17 @@ Another huge addition to DwayneBot prank arsenal`},
 17 = 12,716,000
 18 = 14,904,000
 19 = 17,328,000
-20 = 20,000,000`)
+20 = 20,000,000
+21 = 22,932,000
+22 = 26,136,000
+23 = 29,624,000
+24 = 33,408,000
+25 = 37,500,000
+26 = 41,912,000
+27 = 46,656,000
+28 = 51,744,000
+29 = 57,188,000
+30 = 63,000,000`)
 })
     command(client, "pickup",(message) => {
         var tests = ["Are you a keyboard ? Because you are my type",
@@ -314,7 +324,6 @@ client.on('message', message => {
         message.react('785783420910960651'); 
     }})
 })
-
 
 
 
