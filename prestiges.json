@@ -1,0 +1,202 @@
+[
+	{
+		"prestigelevel": "1",
+		"priceperpoint": ["12000"]
+	},
+	{
+		"prestigelevel": "2",
+		"priceperpoint": ["56000"]
+	},
+    {
+		"prestigelevel": "3",
+		"priceperpoint": ["144000"]
+	},
+    {
+		"prestigelevel": "4",
+		"priceperpoint": ["288000"]
+	},
+    {
+		"prestigelevel": "5",
+		"priceperpoint": ["500000"]
+	},
+    {
+		"prestigelevel": "6",
+		"priceperpoint": ["792000"]
+	},
+    {
+		"prestigelevel": "7",
+		"priceperpoint": ["1176000"]
+	},
+    {
+		"prestigelevel": "8",
+		"priceperpoint": ["1664000"]
+	},
+    {
+		"prestigelevel": "9",
+		"priceperpoint": ["2268000"]
+	},
+    {
+		"prestigelevel": "10",
+		"priceperpoint": ["3000000"]
+	},
+    {
+		"prestigelevel": "11",
+		"priceperpoint": ["3872000"]
+	},
+    {
+		"prestigelevel": "12",
+		"priceperpoint": ["4896000"]
+	},
+    {
+		"prestigelevel": "13",
+		"priceperpoint": ["6084000"]
+	},
+    {
+		"prestigelevel": "14",
+		"priceperpoint": ["7448000"]
+	},
+    {
+		"prestigelevel": "15",
+		"priceperpoint": ["9000000"]
+	},
+    {
+		"prestigelevel": "16",
+		"priceperpoint": ["10752000"]
+	},
+    {
+		"prestigelevel": "17",
+		"priceperpoint": ["12716000"]
+	},
+    {
+		"prestigelevel": "18",
+		"priceperpoint": ["14904000"]
+	},
+    {
+		"prestigelevel": "19",
+		"priceperpoint": ["17328000"]
+	},
+    {
+		"prestigelevel": "20",
+		"priceperpoint": ["20000000"]
+	},
+    {
+		"prestigelevel": "21",
+		"priceperpoint": ["22932000"]
+	},    
+    {
+		"prestigelevel": "22",
+		"priceperpoint": ["26136000"]
+	},    
+    {
+		"prestigelevel": "23",
+		"priceperpoint": ["29624000"]
+	},    
+    {
+		"prestigelevel": "24",
+		"priceperpoint": ["33408000"]
+	},    
+    {
+		"prestigelevel": "25",
+		"priceperpoint": ["37500000"]
+	},    
+    {
+		"prestigelevel": "26",
+		"priceperpoint": ["41912000"]
+	},    
+    {
+		"prestigelevel": "27",
+		"priceperpoint": ["46656000"]
+	},    
+    {
+		"prestigelevel": "28",
+		"priceperpoint": ["51744000"]
+	},    
+    {
+		"prestigelevel": "29",
+		"priceperpoint": ["57188000"]
+	},    
+    {
+		"prestigelevel": "30",
+		"priceperpoint": ["63000000"]
+	},    
+    {
+		"prestigelevel": "31",
+		"priceperpoint": ["69192000"]
+	},    
+    {
+		"prestigelevel": "32",
+		"priceperpoint": ["75776000"]
+	},    
+    {
+		"prestigelevel": "33",
+		"priceperpoint": ["82764000"]
+	},    
+    {
+		"prestigelevel": "34",
+		"priceperpoint": ["90168000"]
+	},    
+    {
+		"prestigelevel": "35",
+		"priceperpoint": ["98000000"]
+	},    
+    {
+		"prestigelevel": "36",
+		"priceperpoint": ["106272000"]
+	},    
+    {
+		"prestigelevel": "37",
+		"priceperpoint": ["114996000"]
+	},    
+    {
+		"prestigelevel": "38",
+		"priceperpoint": ["124184000"]
+	},    
+    {
+		"prestigelevel": "39",
+		"priceperpoint": ["133848000"]
+	},    
+    {
+		"prestigelevel": "40",
+		"priceperpoint": ["144000000"]
+	},    
+    {
+		"prestigelevel": "41",
+		"priceperpoint": ["154652000"]
+	},    
+    {
+		"prestigelevel": "42",
+		"priceperpoint": ["165816000"]
+	},    
+    {
+		"prestigelevel": "43",
+		"priceperpoint": ["177504000"]
+	},    
+    {
+		"prestigelevel": "44",
+		"priceperpoint": ["189728000"]
+	},    
+    {
+		"prestigelevel": "45",
+		"priceperpoint": ["202500000"]
+	},    
+    {
+		"prestigelevel": "46",
+		"priceperpoint": ["215832000"]
+	},    
+    {
+		"prestigelevel": "47",
+		"priceperpoint": ["229736000"]
+	},    
+    {
+		"prestigelevel": "48",
+		"priceperpoint": ["244224000"]
+	},    
+    {
+		"prestigelevel": "49",
+		"priceperpoint": ["259308000"]
+	},    
+    {
+		"prestigelevel": "50",
+		"priceperpoint": ["275000000"]
+	}
+]

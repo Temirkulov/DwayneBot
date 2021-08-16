@@ -1,4 +1,5 @@
 const { timeStamp } = require('console');
+const { DH_CHECK_P_NOT_SAFE_PRIME } = require('constants');
 const Discord = require('discord.js');
 const { send } = require('process');
 const command = require('./command')
@@ -225,6 +226,9 @@ Another huge addition to DwayneBot prank arsenal`},
 
     message.channel.send(embed)
     })
+    command(client, "gcalc",(message) => {
+        
+    })
     command(client, "rock",(message) => {
         var tests = ["Built different💯🥶",
     "Cut from different cloth📠💯",
@@ -240,6 +244,7 @@ Another huge addition to DwayneBot prank arsenal`},
 
     message.channel.send(String([tests[test]]));
     })
+    
     command(client,"m",(message) => {   
         message.channel.send(`1 = 12,000
 2 = 56,000
@@ -308,23 +313,74 @@ client.on('message', message => {
         { 
         message.react('763029066722443264');
     }
-    if (message.content.includes("<@!768958265291046962>") ||
-    (/\bcashew\b/i.test(message.content)) ) {
-        message.react('🥜');
-    }
-    if (message.content.includes("<@!396383786973134848>") ||
-    (/\bcoco\b/i.test(message.content)) ) {
-        message.react('🥥'); 
-    }
-    if (/\bsansan\b/i.test(message.content)) {
-        message.react('785777451317329920'); 
-    } 
-    if (message.content.includes("<@!330818210561785856>") ||
-    (/\bleela\b/i.test(message.content)) ) {
-        message.react('785783420910960651'); 
-    }})
+    
+    })
+
 })
+client.on("message" , (message) => {
+const collector = new Discord.MessageCollector(message.channel, (m) => m.embeds.length > 0, { maxProcessed: 1, max: 1 });
+if (message.content === ",give" ) {
+    collector.on("collect", (el, c) => {
+        let text = el.embeds[0].description;
+        var getRec = text.split("Max you can receive: **$").pop().split("**")[0].replace(/,/g, '');
+        el.react("👁️").then((r) => {
+            const filter = (reaction, user) => reaction.emoji.name === "👁️";
+            el.awaitReactions(filter, { max: 1 }).then((collected) => {
+                const arrayUsers = collected.get("👁️").users.cache; //.get(message.member.user.id)
+                arrayUsers.forEach((index) => {
+                    if (index.id === message.member.user.id) {
+                        if (message.member.roles.cache.has(`876815413915303956`)) //checks if member has the 'Exclusives' role
+                        {
+                        const filter = m => Number(m.content) >= 1 && Number(m.content) <= 50; //sets limit on number 
+                        message.channel.send(`What is your prestige level?(NUMBERS ONLY)`);
+                        message.channel.awaitMessages(filter, { max: 1, time : 10000, errors: ["time"] })
+                        .then((collected) => {
+                            const msg = collected.first();
+                            const fs = require("fs");
+                            const logo = 
+                            'https://static.bangkokpost.com/media/content/20200903/c1_3738615.jpg'
+                            let bil = 1000000000
+                            client.msgs = require('./prestiges.json')
+                            let _message = client.msgs[msg.content-1].priceperpoint;
+                            let ppp = (getRec / _message);
+                            let days = (bil / ppp);
+                            let hours = (days * 24);
+                            const embed1 = new Discord.MessageEmbed()
+                            .setTitle("Prestige Report")
+                            .setThumbnail(logo)
+                            .setColor(`#FEFFA3`)
+                            .setDescription(`**Prestige Points Per Day**
+${ppp.toLocaleString(`en`)}
 
+**Time until**:
+**1 bil**: ${days.toFixed(2)} Days or ${hours.toFixed(2)} Hours
+**10 bil**: ${(10000000000 / ppp).toFixed(2)} Days or ${((10000000000 / ppp) * 24).toFixed(2)} Hours
+**100 bil**: ${(100000000000 / ppp).toFixed(2)} Days or ${((100000000000 / ppp) * 24).toFixed(2)} Hours
 
+**Multiplier**
+**1000x**: ${(279340210 / ppp).toFixed(2)} Days or ${((279340210 / ppp) * 24).toFixed(2)} Hours
+**1500x**: ${(628118200 / ppp).toFixed(2)} Days or ${((628118200 / ppp) * 24).toFixed(2)} Hours
+**2000x**: ${(1116301050 / ppp).toFixed(2)} Days or ${((1116301050 / ppp) * 24).toFixed(2)} Hours
+**2500x**: ${(1743889510 / ppp).toFixed(2)} Days or ${((1743889510 / ppp) * 24).toFixed(2)} Hours
+**3000x**: ${(2510882780 / ppp).toFixed(2)} Days or ${((2510882780 / ppp) * 24).toFixed(2)} Hours
+**3500x**: ${(3417281710 / ppp).toFixed(2)} Days or ${((3417281710 / ppp) * 24).toFixed(2)} Hours
 
+*all prices shown without accounting price of Multiplier Caps*
+`)
+                            .setFooter(`Requested by ${message.author.username}`)
+message.channel.send(embed1)
+                        })
+                        .catch((collected) => {
+                            message.channel.send(`Time's up, you took your sweet time!`);
+                            })
+                        
+                    }else message.channel.send(`You don't have the required role!`); }
+                });
+
+            });
+        });
+    });
+}
+
+});
 client.login(config.token)
