@@ -320,7 +320,7 @@ client.on('message', message => {
 })
 client.on("message" , (message) => {
 const collector = new Discord.MessageCollector(message.channel, (m) => m.embeds.length > 0, { maxProcessed: 1, max: 1 });
-if (message.content === ",give",",gift" ) {
+if (message.content === ",give") {
     collector.on("collect", (el, c) => {
         let text = el.embeds[0].description;
         var getRec = text.split("Max you can receive: **$").pop().split("**")[0].replace(/,/g, '');
