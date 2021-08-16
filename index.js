@@ -180,7 +180,7 @@ client.on('ready', () => {
         Uptime: **${hours} hours ${minutes} minutes ${seconds} seconds**
 Creator: **The Rock**
 Servers: **${client.guilds.cache.size}**
-Version: **1.0.0.2**
+Version: **1.10.0.0**
 Memory Usage: **${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}mb**
 System: **Windows 10**
 Host: **Heroku**`)
@@ -215,13 +215,14 @@ Host: **Heroku**`)
       .setColor('#FEFFA3')
       .setThumbnail(logo)
       .setTitle('Bot Information')
-      .addFields( {name: `New features (1.0.0.2)`, value:`
--**Minor Fixes**
-Minor fixes and bugs, and some slight improvement to the ;rock command
--**c-sell**
-Another huge addition to DwayneBot prank arsenal`},
-      {name:`Next Version`, value:
-      `1.0.0.25`}
+      .addFields( {name: `New features (1.10.0.0)`, value:`
+-**Huge New Update**
+- new reaction: 👁, which reacts to ,give or ,gift and is used to calculate the prestige report!
+- this eases your work as it calculates various stuff related to prestige points!
+- also Minor fixes here and there.
+-command is limited to Exclusives role members
+-Special Thanks  to @oCryptic#3169 for helping in this huge new command
+`},
     )
 
     message.channel.send(embed)
@@ -319,7 +320,7 @@ client.on('message', message => {
 })
 client.on("message" , (message) => {
 const collector = new Discord.MessageCollector(message.channel, (m) => m.embeds.length > 0, { maxProcessed: 1, max: 1 });
-if (message.content === ",give" ) {
+if (message.content === ",give","gift" ) {
     collector.on("collect", (el, c) => {
         let text = el.embeds[0].description;
         var getRec = text.split("Max you can receive: **$").pop().split("**")[0].replace(/,/g, '');
