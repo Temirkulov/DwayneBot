@@ -297,7 +297,7 @@ if (message.content === ",give") {
                             let hours = (days * 24);
                             const embed1 = new Discord.MessageEmbed()
                             .setTitle("Prestige Report")
-                            .setThumbnail(logo)
+                            .setThumbnail(message.author.avatarURL())
                             .setColor(`#FEFFA3`)
                             .setDescription(`**Prestige Points Per Day**
 ${ppp.toLocaleString(`en`)}
@@ -364,7 +364,7 @@ if (index.id === message.member.user.id) {
         let hours = (days * 24);
         const embed1 = new Discord.MessageEmbed()
         .setTitle("Prestige Report")
-        .setThumbnail(logo)
+        .setThumbnail(message.author.avatarURL()).setThumbnail(logo)
         .setColor(`#FEFFA3`)
         .setDescription(`**Prestige Points Per Day**
 ${ppp.toLocaleString(`en`)}
