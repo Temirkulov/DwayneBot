@@ -270,7 +270,7 @@ client.on("message" , (message) => {
     if (message.member.roles.cache.has(`876815413915303956`)) //checks if member has the 'Exclusives' role
                         {
 const collector = new Discord.MessageCollector(message.channel, (m) => m.embeds.length > 0, { maxProcessed: 1, max: 1 });
-if (message.content === ",give" , ",gift") {
+if (message.content === ",give") {
     collector.on("collect", (el, c) => {
         let text = el.embeds[0].description;
         var getRec = text.split("Max you can receive: **$").pop().split("**")[0].replace(/,/g, '');
