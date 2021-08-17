@@ -6,7 +6,7 @@ const command = require('./command')
 const client = new Discord.Client()
 const config = require ('./config.json')
 const whitelist = (`348296915143884801`,`692062388991688814`,`463174263973871626`,`330818210561785856`)
-require('events').EventEmitter.defaultMaxListeners = 20;
+require('events').EventEmitter.defaultMaxListeners = 30;
 
 client.on('ready', () => {
     console.log('The client is ready!')
@@ -134,31 +134,7 @@ client.on('ready', () => {
                     )
             }
     })
-    command(client,'c-ask',(message) => {
-        if(message.author.id === "348296915143884801","692062388991688814")  {
-            const channelIDs = `716745665643937862`
-            client.channels.cache.get(channelIDs).send(":taco: I'm feeling a little extra hungry today, could I buy \`1050`\ tacos? `Type 'sell' to sell them tacos!`")
-            message.react('✅')
-        } else return
 
-    })
-    command(client,'c-sell',(message) => {
-        if(message.author.id === "348296915143884801","692062388991688814")  {
-            const channelIDs = `716745665643937862`
-            client.channels.cache.get(channelIDs).send(":moneybag: Nice doing business with you **The Rock**! I believe I owe you `$10500` and heres a 10% tip of `$1050` for being awesome!")
-            message.react('✅')
-        } else return
-    })
-    command(client,'c-busy',(message) => {
-        if(message.author.id === "348296915143884801","692062388991688814") {
-            const channelIDs = `716745665643937862`
-            client.channels.cache.get(channelIDs).send(":rage: Well it seems like everyone working here is lazy, I'm going to the fast food joint across the road.")
-            message.react('✅')
-        } else return
-    })
-    
-
-    
     command(client,'stats',(message) => {
         
         // client.uptime is in millseconds
@@ -207,26 +183,6 @@ Host: **Heroku**`)
 		}
 
     }) 
-    command(client, 'update',(message) =>{
-        const logo = 
-        'https://static.bangkokpost.com/media/content/20200903/c1_3738615.jpg'
-      const embed = new Discord.MessageEmbed()
-
-      .setColor('#FEFFA3')
-      .setThumbnail(logo)
-      .setTitle('Bot Information')
-      .addFields( {name: `New features (1.10.0.0)`, value:`
--**Huge New Update**
-- new reaction: 👁, which reacts to ,give or ,gift and is used to calculate the prestige report!
-- this eases your work as it calculates various stuff related to prestige points!
-- also Minor fixes here and there.
--command is limited to Exclusives role members
--Special Thanks  to @oCryptic#3169 for helping in this huge new command
-`},
-    )
-
-    message.channel.send(embed)
-    })
     command(client, "gcalc",(message) => {
         
     })
@@ -308,19 +264,13 @@ Host: **Heroku**`)
          message.channel.send(String([tests[test]]));  
     
         })
-client.on('message', message => {
-    if (message.content.includes("<@!348296915143884801>") ||
-        (/\brock\b/i.test(message.content)) )
-        { 
-        message.react('763029066722443264');
-    }
-    
-    })
 
 })
 client.on("message" , (message) => {
+    if (message.member.roles.cache.has(`876815413915303956`)) //checks if member has the 'Exclusives' role
+                        {
 const collector = new Discord.MessageCollector(message.channel, (m) => m.embeds.length > 0, { maxProcessed: 1, max: 1 });
-if (message.content === ",give") {
+if (message.content === ",give" , ",gift") {
     collector.on("collect", (el, c) => {
         let text = el.embeds[0].description;
         var getRec = text.split("Max you can receive: **$").pop().split("**")[0].replace(/,/g, '');
@@ -330,8 +280,7 @@ if (message.content === ",give") {
                 const arrayUsers = collected.get("👁️").users.cache; //.get(message.member.user.id)
                 arrayUsers.forEach((index) => {
                     if (index.id === message.member.user.id) {
-                        if (message.member.roles.cache.has(`876815413915303956`)) //checks if member has the 'Exclusives' role
-                        {
+                        
                         const filter = m => Number(m.content) >= 1 && Number(m.content) <= 50; //sets limit on number 
                         message.channel.send(`What is your prestige level?(NUMBERS ONLY)`);
                         message.channel.awaitMessages(filter, { max: 1, time : 10000, errors: ["time"] })
@@ -375,22 +324,14 @@ message.channel.send(embed1)
                             message.channel.send(`Time's up, you took your sweet time!`);
                             })
                         
-                    }else message.channel.send(`You don't have the required role!`); }
+                     }
                 });
 
             });
         });
     });
 }
-client.on('message', message => {
-    if (message.content.includes("<@!348296915143884801>") ||
-        (/\brock\b/i.test(message.content)) )
-        { 
-        message.react('763029066722443264');
-    }
-    
-    })
-
+                        }else return;
 })
 client.on("message" , (message) => {
 const collector = new Discord.MessageCollector(message.channel, (m) => m.embeds.length > 0, { maxProcessed: 1, max: 1 });
@@ -456,5 +397,6 @@ message.channel.send(embed1)
         });
     });
 }
+
 });
 client.login(config.token)
