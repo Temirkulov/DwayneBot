@@ -1,6 +1,8 @@
 const { timeStamp } = require('console');
 const { DH_CHECK_P_NOT_SAFE_PRIME } = require('constants');
 const Discord = require('discord.js');
+const { get } = require('http');
+const { e } = require('mathjs');
 const { send } = require('process');
 const command = require('./command')
 const client = new Discord.Client()
@@ -267,10 +269,11 @@ Host: **Heroku**`)
 
 })
 client.on("message" , (message) => {
-    if (message.member.roles.cache.has(`876815413915303956`)) //checks if member has the 'Exclusives' role
-                        {
+  
 const collector = new Discord.MessageCollector(message.channel, (m) => m.embeds.length > 0, { maxProcessed: 1, max: 1 });
 if (message.content === ",give") {
+    if (message.member.roles.cache.has(`876815413915303956`)) //checks if member has the 'Exclusives' role
+    {
     collector.on("collect", (el, c) => {
         let text = el.embeds[0].description;
         var getRec = text.split("Max you can receive: **$").pop().split("**")[0].replace(/,/g, '');
@@ -334,10 +337,11 @@ message.channel.send(embed1)
                         }else return;
 })
 client.on("message" , (message) => {
-    if (message.member.roles.cache.has(`876815413915303956`)) //checks if member has the 'Exclusives' role
-    {
+    
 const collector = new Discord.MessageCollector(message.channel, (m) => m.embeds.length > 0, { maxProcessed: 1, max: 1 });
 if (message.content === ",gift") {
+    if (message.member.roles.cache.has(`876815413915303956`)) //checks if member has the 'Exclusives' role
+    {
 collector.on("collect", (el, c) => {
 let text = el.embeds[0].description;
 var getRec = text.split("Max you can receive: **$").pop().split("**")[0].replace(/,/g, '');
@@ -400,6 +404,26 @@ message.channel.send(embed1)
 }
     }else return;
 })
-
+/*client.on("message" , (message) => {
+const collector = new Discord.MessageCollector(message.channel, m => m.embeds.length > 0, { maxProcessed: 1, max: 1 });
+if(message.content === ',p'){
+    collector.on('collect', (el, c) =>{
+      let text = el.embeds[0].fields[1].value;
+      var getRec = text.split('💰 $').pop().split('\n')[0]
+            el.react('📊').then(r => {
+              const filter = (reaction, user) => reaction.emoji.name === '📊'
+            el.awaitReactions(filter, {max:1}).then(collected => {
+              const arrayUsers = collected.get('📊').users.cache //.get(message.member.user.id)
+                    arrayUsers.forEach(index => {
+                      if(index.id === message.member.user.id){
+                        const filter = m => Number(m.content) >= 1 && Number(m.content) <= 50; //sets limit on number 
+                        message.channel.send(`What is your prestige level?(NUMBERS ONLY)`);
+                        message.channel.awaitMessages(filter, { max: 1, time : 10000, errors: ["time"] })
+                        .then((collected) => {
+                            const msg = collected.first()
+                            message.channel.send(`${getRec} and ${msg.content}`)
+                        })
+                      }})})})})}
+                    })*/
 
 client.login(config.token)
