@@ -334,38 +334,39 @@ message.channel.send(embed1)
                         }else return;
 })
 client.on("message" , (message) => {
+    if (message.member.roles.cache.has(`876815413915303956`)) //checks if member has the 'Exclusives' role
+    {
 const collector = new Discord.MessageCollector(message.channel, (m) => m.embeds.length > 0, { maxProcessed: 1, max: 1 });
-if (message.content === ",gift") {
-    collector.on("collect", (el, c) => {
-        let text = el.embeds[0].description;
-        var getRec = text.split("Max you can receive: **$").pop().split("**")[0].replace(/,/g, '');
-        el.react("👁️").then((r) => {
-            const filter = (reaction, user) => reaction.emoji.name === "👁️";
-            el.awaitReactions(filter, { max: 1 }).then((collected) => {
-                const arrayUsers = collected.get("👁️").users.cache; //.get(message.member.user.id)
-                arrayUsers.forEach((index) => {
-                    if (index.id === message.member.user.id) {
-                        if (message.member.roles.cache.has(`876815413915303956`)) //checks if member has the 'Exclusives' role
-                        {
-                        const filter = m => Number(m.content) >= 1 && Number(m.content) <= 50; //sets limit on number 
-                        message.channel.send(`What is your prestige level?(NUMBERS ONLY)`);
-                        message.channel.awaitMessages(filter, { max: 1, time : 10000, errors: ["time"] })
-                        .then((collected) => {
-                            const msg = collected.first();
-                            const fs = require("fs");
-                            const logo = 
-                            'https://static.bangkokpost.com/media/content/20200903/c1_3738615.jpg'
-                            let bil = 1000000000
-                            client.msgs = require('./prestiges.json')
-                            let _message = client.msgs[msg.content-1].priceperpoint;
-                            let ppp = (getRec / _message);
-                            let days = (bil / ppp);
-                            let hours = (days * 24);
-                            const embed1 = new Discord.MessageEmbed()
-                            .setTitle("Prestige Report")
-                            .setThumbnail(logo)
-                            .setColor(`#FEFFA3`)
-                            .setDescription(`**Prestige Points Per Day**
+if (message.content === ",give") {
+collector.on("collect", (el, c) => {
+let text = el.embeds[0].description;
+var getRec = text.split("Max you can receive: **$").pop().split("**")[0].replace(/,/g, '');
+el.react("👁️").then((r) => {
+const filter = (reaction, user) => reaction.emoji.name === "👁️";
+el.awaitReactions(filter, { max: 1 }).then((collected) => {
+const arrayUsers = collected.get("👁️").users.cache; //.get(message.member.user.id)
+arrayUsers.forEach((index) => {
+if (index.id === message.member.user.id) {
+    
+    const filter = m => Number(m.content) >= 1 && Number(m.content) <= 50; //sets limit on number 
+    message.channel.send(`What is your prestige level?(NUMBERS ONLY)`);
+    message.channel.awaitMessages(filter, { max: 1, time : 10000, errors: ["time"] })
+    .then((collected) => {
+        const msg = collected.first();
+        const fs = require("fs");
+        const logo = 
+        'https://static.bangkokpost.com/media/content/20200903/c1_3738615.jpg'
+        let bil = 1000000000
+        client.msgs = require('./prestiges.json')
+        let _message = client.msgs[msg.content-1].priceperpoint;
+        let ppp = (getRec / _message);
+        let days = (bil / ppp);
+        let hours = (days * 24);
+        const embed1 = new Discord.MessageEmbed()
+        .setTitle("Prestige Report")
+        .setThumbnail(logo)
+        .setColor(`#FEFFA3`)
+        .setDescription(`**Prestige Points Per Day**
 ${ppp.toLocaleString(`en`)}
 
 **Time until**:
@@ -383,20 +384,22 @@ ${ppp.toLocaleString(`en`)}
 
 *all prices shown without accounting price of Multiplier Caps*
 `)
-                            .setFooter(`Requested by ${message.author.username}`)
+        .setFooter(`Requested by ${message.author.username}`)
 message.channel.send(embed1)
-                        })
-                        .catch((collected) => {
-                            message.channel.send(`Time's up, you took your sweet time!`);
-                            })
-                        
-                    }else message.channel.send(`You don't have the required role!`); }
-                });
-
-            });
-        });
-    });
-}
+    })
+    .catch((collected) => {
+        message.channel.send(`Time's up, you took your sweet time!`);
+        })
+    
+ }
+});
 
 });
+});
+});
+}
+    }else return;
+})
+
+
 client.login(config.token)
