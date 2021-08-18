@@ -2,7 +2,7 @@ const { timeStamp } = require('console');
 const { DH_CHECK_P_NOT_SAFE_PRIME } = require('constants');
 const Discord = require('discord.js');
 const { get } = require('http');
-const { e } = require('mathjs');
+const { e, not } = require('mathjs');
 const { send } = require('process');
 const command = require('./command')
 const client = new Discord.Client()
@@ -167,6 +167,19 @@ Host: **Heroku**`)
         
         message.channel.send(embed)
     }) 
+    /*command(client, `gcalc`, (message) => {
+        const fs = require("fs")
+        const msg = message.content.split(";gcalc").pop().split("\n")[0]
+        var args = msg.split(' ')
+        client.taxes = require('./tax.json')
+
+        let inputvalue = args[2]; //fetches value for calculations
+                            //let taxcharge = client.taxes[inputvalue.toString().length].gift
+                            //let aftertaxvalue = Math.floor((inputvalue * taxcharge)).toLocaleString(`en`)
+                            //var a = .7, b = aftertaxvalue
+                            //var c = inputvalue.toString().length > 29? a : b
+                            message.channel.send(`$${msg}`)
+    })*/
     command(client, 'coinflip',(message) => {
         function getRandomInt(min, max) {
             min = Math.ceil(min);
@@ -185,9 +198,7 @@ Host: **Heroku**`)
 		}
 
     }) 
-    command(client, "gcalc",(message) => {
-        
-    })
+
     command(client, "rock",(message) => {
         var tests = ["Built different💯🥶",
     "Cut from different cloth📠💯",
@@ -268,7 +279,7 @@ Host: **Heroku**`)
         })
 
 })
-client.on("message" , (message) => {
+/*client.on("message" , (message) => {
   
 const collector = new Discord.MessageCollector(message.channel, (m) => m.embeds.length > 0, { maxProcessed: 1, max: 1 });
 if (message.content === ",give") {
@@ -368,7 +379,7 @@ if (index.id === message.member.user.id) {
         let hours = (days * 24);
         const embed1 = new Discord.MessageEmbed()
         .setTitle("Prestige Report")
-        .setThumbnail(message.author.avatarURL()).setThumbnail(logo)
+        .setThumbnail(message.author.avatarURL())
         .setColor(`#FEFFA3`)
         .setDescription(`**Prestige Points Per Day**
 ${ppp.toLocaleString(`en`)}
@@ -403,13 +414,17 @@ message.channel.send(embed1)
 });
 }
     }else return;
-})
-/*client.on("message" , (message) => {
+})*/
+client.on("message" , (message) => {
 const collector = new Discord.MessageCollector(message.channel, m => m.embeds.length > 0, { maxProcessed: 1, max: 1 });
 if(message.content === ',p'){
+    if (message.member.roles.cache.has(`876815413915303956`)) //checks if member has the 'Exclusives' role
+    {
     collector.on('collect', (el, c) =>{
       let text = el.embeds[0].fields[1].value;
-      var getRec = text.split('💰 $').pop().split('\n')[0]
+      var balance = text.split('💰 $').pop().split('\n')[0].replace(/,/g, '')
+      let text2 = el.embeds[0].fields[2].value;
+      var income = text2.split('💸 $').pop().split('\n')[0].replace(`/min`, '').replace(/,/g,'')
             el.react('📊').then(r => {
               const filter = (reaction, user) => reaction.emoji.name === '📊'
             el.awaitReactions(filter, {max:1}).then(collected => {
@@ -421,9 +436,90 @@ if(message.content === ',p'){
                         message.channel.awaitMessages(filter, { max: 1, time : 10000, errors: ["time"] })
                         .then((collected) => {
                             const msg = collected.first()
-                            message.channel.send(`${getRec} and ${msg.content}`)
+                            const fs = require("fs");
+                            const logo = 
+                            'https://static.bangkokpost.com/media/content/20200903/c1_3738615.jpg'
+                            let bil = 1000000000
+                            client.msgs = require('./prestiges.json')
+                            let _message = client.msgs[msg.content-1].priceperpoint;
+                            let ppm = (income / _message) //prestige points per minute
+                            let ppd = (ppm * 1440)  // prestige points per day
+                            let giftReceive = income * 1440 //max gift amount 
+                            client.taxes = require('./tax.json')
+                            let taxcharge = client.taxes[giftReceive.toString().length].gift;
+                            let AfterTaxGift = (giftReceive * taxcharge).toLocaleString(`en`)
+                            let giftGive = income * 120 // giftable amt
+                            let taxchargegift = client.taxes[giftGive.toString().length].gift;
+                            let AfterTaxGive = (giftGive * taxchargegift).toLocaleString(`en`)
+                            let bpp = balance / _message //balance prestige points
+                            let bmb = 1000000000 - bpp // billion minus balance
+                            var a = 0 , b = bpp;
+                            let tmb = 10000000000 - bpp //ten billion minus balance
+                            let hmb = 100000000000 - bpp // hundred billion minus balance
+                            var c = b > 1000000000? a : bmb; //shortened version of if-else statement
+                            var d = b > 10000000000? a : tmb;
+                            var e = b > 100000000000? a : hmb;
+                            var fin = `✅Finished`
+                            var f = (c/ppd) > 0? `${(c / ppd).toFixed(2)} Days or ${((c / ppd) * 24).toFixed(2)} Hours` : fin
+                            var g = (d/ppd) > 0? `${(d / ppd).toFixed(2)} Days or ${((d / ppd) * 24).toFixed(2)} Hours` : fin
+                            var h = (e/ppd) > 0? `${(e / ppd).toFixed(2)} Days or ${((e / ppd) * 24).toFixed(2)} Hours` : fin
+                            let oneh = (2787950 - bpp)
+                            let fiveh = (69702250 - bpp)
+                            let onesh = (279340210 - bpp)
+                            let twosh = ((279340210 + 11000000) - bpp)
+                            let threesh = (3621882780- bpp)
+                            let threefivesh = (14528281710 - bpp)
+                            let foursh = (115574085430 - bpp)
+                            var i = b > 2787950? a : oneh
+                            var j = b > 69702250? a : fiveh
+                            var k = b > 279340210? a : onesh
+                            var l = b > (279340210 + 11000000)? a : twosh
+                            var m = b > 3621882780? a : threesh
+                            var n = b > 14528281710? a : threefivesh
+                            var o = b > 115574085430? a : foursh
+                            var ach = `✅ Achieved`
+                            var q = (i/ppd) > 0? `${(i / ppd).toFixed(2)} Days or ${((i / ppd) * 24).toFixed(2)} Hours` : ach
+                            var r = (j/ppd) > 0? `${(j / ppd).toFixed(2)} Days or ${((j / ppd) * 24).toFixed(2)} Hours` : ach
+                            var s = (k/ppd) > 0? `${(k / ppd).toFixed(2)} Days or ${((k / ppd) * 24).toFixed(2)} Hours` : ach
+                            var t = (l/ppd) > 0? `${(l / ppd).toFixed(2)} Days or ${((l / ppd) * 24).toFixed(2)} Hours` : ach
+                            var u = (m/ppd) > 0? `${(m / ppd).toFixed(2)} Days or ${((m / ppd) * 24).toFixed(2)} Hours` : ach
+                            var v = (n/ppd) > 0? `${(n / ppd).toFixed(2)} Days or ${((n / ppd) * 24).toFixed(2)} Hours` : ach
+                            var w = (o/ppd) > 0? `${(o / ppd).toFixed(2)} Days or ${((o / ppd) * 24).toFixed(2)} Hours` : ach
+                            const embed1 = new Discord.MessageEmbed()
+                            .setTitle("Profile Report")
+                            .setThumbnail(message.author.avatarURL())
+                            .setColor(`#FEFFA3`)
+                             .setDescription(`**Prestige Points**
+**Per Day**: ${ppd.toLocaleString(`en`)}
+**Accumulated**: ${bpp.toLocaleString(`en`)}
+
+**Time until**: 
+**1 bil**: ${f}
+**10 bil**: ${g}
+**100 bil**: ${h}
+
+**Multiplier**
+**100x**: ${q}
+**500x**: ${r}
+**1000x**: ${s}
+**2000x**: ${t}
+**3000x**: ${u}
+**3500x**: ${v}
+**4000x**: ${w}
+
+**Gifts After Tax**
+**Max Giftable**: ${AfterTaxGive}
+**Max Receivable**: ${AfterTaxGift}
+        
+
+
+        `)
+                            .setFooter(`Requested by ${message.author.username}`)
+                            message.channel.send(embed1)
                         })
                       }})})})})}
-                    })*/
+                    }else return;
+                })
+
 
 client.login(config.token)
