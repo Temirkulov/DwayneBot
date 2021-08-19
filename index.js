@@ -487,18 +487,19 @@ if(message.content === ',p'){
                             var w = (o/ppd) > 0? `${(o / ppd).toFixed(2)} Days or ${((o / ppd) * 24).toFixed(2)} Hours` : ach
                             const embed1 = new Discord.MessageEmbed()
                             .setTitle("Profile Report")
+                            .setAuthor(`${message.author.username}`,`${message.author.avatarURL()}`)
                             .setThumbnail(message.author.avatarURL())
                             .setColor(`#FEFFA3`)
-                             .setDescription(`**Prestige Points**
+                             .setDescription(`**💠 Prestige Points**
 **Per Day**: ${ppd.toLocaleString(`en`)}
 **Accumulated**: ${bpp.toLocaleString(`en`)}
 
-**Time until**: 
+**⌛ Time until**: 
 **1 bil**: ${f}
 **10 bil**: ${g}
 **100 bil**: ${h}
 
-**Multiplier**
+**📈 Multiplier**
 **100x**: ${q}
 **500x**: ${r}
 **1000x**: ${s}
@@ -507,19 +508,19 @@ if(message.content === ',p'){
 **3500x**: ${v}
 **4000x**: ${w}
 
-**Gifts After Tax**
+**🎁 Gifts After Tax**
 **Max Giftable**: ${AfterTaxGive}
 **Max Receivable**: ${AfterTaxGift}
         
 
 
         `)
-                            .setFooter(`Requested by ${message.author.username}`)
+                            .setFooter(`Developed by The Rock#1333`,`https://cdn.discordapp.com/attachments/776985762499002408/877895083268128788/pngegg.png`)
+
                             message.channel.send(embed1)
                         })
                       }})})})})}
                     }else return;
                 })
-
 
 client.login(config.token)
