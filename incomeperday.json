@@ -1,0 +1,123 @@
+[
+    {
+        "digitlength" : "1",
+        "dividedby" : "1",
+        "name" : ""
+    },
+    {
+        "digitlength" : "2",
+        "dividedby" : "1",
+        "name" : ""
+    },
+    {
+        "digitlength" : "3",
+        "dividedby" : "100",
+        "name" : "hundred"
+    },
+    {
+        "digitlength" : "4",
+        "dividedby" : "1000",
+        "name" : "thousand"
+    },
+    {
+        "digitlength" : "5",
+        "dividedby" : "1000",
+        "name" : "thousand"
+    },
+    {
+        "digitlength" : "6",
+        "dividedby" : "1000",
+        "name" : "thousand"
+    },
+    {
+        "digitlength" : "7",
+        "dividedby" : "1000000",
+        "name" : "million"
+    },
+    {
+        "digitlength" : "8",
+        "dividedby" : "1000000",
+        "name" : "million"
+    },
+    {
+        "digitlength" : "9",
+        "dividedby" : "1000000",
+        "name" : "million"
+    },
+    {
+        "digitlength" : "10",
+        "dividedby" : "1000000000",
+        "name" : "billion"
+    },
+    {
+        "digitlength" : "11",
+        "dividedby" : "1000000000",
+        "name" : "billion"
+    },
+    {
+        "digitlength" : "12",
+        "dividedby" : "1000000000",
+        "name" : "billion"
+    },
+    {
+        "digitlength" : "13",
+        "dividedby" : "1000000000000",
+        "name" : "trillion"
+    },
+    {
+        "digitlength" : "14",
+        "dividedby" : "1000000000000",
+        "name" : "trillion"
+    },
+    {
+        "digitlength" : "15",
+        "dividedby" : "1000000000000",
+        "name" : "trillion"
+    },
+    {
+        "digitlength" : "16",
+        "dividedby" : "1000000000000000",
+        "name" : "quadrillion"
+    },
+    {
+        "digitlength" : "17",
+        "dividedby" : "1000000000000000",
+        "name" : "quadrillion"
+    },
+    {
+        "digitlength" : "18",
+        "dividedby" : "1000000000000000",
+        "name" : "quadrillion"
+    },
+    {
+        "digitlength" : "19",
+        "dividedby" : "1000000000000000000",
+        "name" : "quintillion"
+    },
+    {
+        "digitlength" : "20",
+        "dividedby" : "1000000000000000000",
+        "name" : "quintillion"
+    },
+    {
+        "digitlength" : "21",
+        "dividedby" : "1000000000000000000",
+        "name" : "quintillion"
+    },
+    {
+        "digitlength" : "22",
+        "dividedby" : "1000000000000000000",
+        "name" : "sextillion"
+    },
+    {
+        "digitlength" : "23",
+        "dividedby" : "1000000000000000000",
+        "name" : "sextillion"
+    },
+    {
+        "digitlength" : "24",
+        "dividedby" : "1000000000000000000",
+        "name" : "sextillion"
+    }
+    
+]
