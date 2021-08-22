@@ -268,6 +268,8 @@ Host: **Heroku**`)
 })
 client.on("message" , (message) => {
     if (!(isNaN(message.content.substr(-1))) && message.content.startsWith(`,p`)) {
+    if (message.member.roles.cache.has(`876815413915303956`)) //checks if member has the 'Exclusives' role
+    {
         const collector = new Discord.MessageCollector(message.channel, m => m.embeds.length > 0, { maxProcessed: 1, max: 1 });
         collector.on('collect', (el, c) => {
             //if (!(/^\d{18}$/.test(message.content.substr(-18)))) return;
@@ -332,7 +334,7 @@ client.on("message" , (message) => {
                     var excellentremarksincome = [`Dude makes $${incomenumber2.toFixed(2)} ${incomename} per day, this dude is top tier for prestige ${prestige}`,`This person earns $${incomenumber2.toFixed(2)} ${incomename} a day, which means they are EXCELLENT for Prestige ${prestige}`, `By earning $${incomepmnumber2.toFixed(2)} ${incomepmname} a minute, this person definitely a future incomelb typa player`,`At $${incomepmnumber2.toFixed(2)} ${incomepmname}, this person is on the right path because they know their stuff very well`]
                     var goodremarksincome = [`This person is a great fit for the corporation, with a good income of ${incomepmnumber2.toFixed(2)} ${incomepmname}`, `A good player overall, with a respectable daily earning of $${incomenumber2.toFixed(2)} ${incomename}`, `Definitely one to hire, there aren't many people earning more than $${incomepmnumber2.toFixed(2)} ${incomepmname} a minute at their prestige level`]
                     var averageremarksincome = [`A solid pick for the corporation overall, at Prestige ${prestige} earning ${incomenumber2.toFixed(2)} ${incomename} a day isn't bad at all`,`Having an income of $${incomepmnumber2.toFixed(2)} ${incomepmname} a minute is nice at Prestige ${prestige}`]
-                    var badremarksincome = [`This person is just trash, like fr man what is ${incomepmnumber2.toFixed(2)} ${incomepmname}per min`,`With all due respect, with an income of $${incomepmnumber2.toFixed(2)} ${incomepmname} per minute, there are many better players at their level`, `Earning $${incomenumber2.toFixed(2)} ${incomename} per day at Prestige ${prestige} this person could be better if they were more patient`]
+                    var badremarksincome = [`This person is just trash, like fr man what is ${incomepmnumber2.toFixed(2)} ${incomepmname} per min`,`With all due respect, with an income of $${incomepmnumber2.toFixed(2)} ${incomepmname} per minute, the only place this mans going is to the garbage bin`, `Earning $${incomenumber2.toFixed(2)} ${incomename} per day at Prestige ${prestige} this person is on another level of ass`]
                     var godremarksstring = godremarksincome[Math.floor(Math.random() * godremarksincome.length)]
                     var excellentremarksstring = excellentremarksincome[Math.floor(Math.random()*godremarksincome.length)]
                     var goodremarksstring = goodremarksincome[Math.floor(Math.random() * goodremarksincome.length)]
@@ -546,7 +548,7 @@ client.on("message" , (message) => {
                     message.channel.send(embed1)
                 }})})})//} else return;
         })
-    } else return;
+    }} else return;
 })
 /*client.on("message" , (message) => {
 const collector = new Discord.MessageCollector(message.channel, m => m.embeds.length > 0, { maxProcessed: 1, max: 1 });
