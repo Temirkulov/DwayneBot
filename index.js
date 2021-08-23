@@ -167,19 +167,20 @@ Host: **Heroku**`)
         
         message.channel.send(embed)
     }) 
-    /*command(client, `gcalc`, (message) => {
+    command(client, `gcalc`, (message) => {
         const fs = require("fs")
-        const msg = message.content.split(";gcalc").pop().split("\n")[0]
-        var args = msg.split(' ')
-        client.taxes = require('./tax.json')
+        const args = message.content.slice(0).trim().split(' ');
 
-        let inputvalue = args[2]; //fetches value for calculations
-                            //let taxcharge = client.taxes[inputvalue.toString().length].gift
-                            //let aftertaxvalue = Math.floor((inputvalue * taxcharge)).toLocaleString(`en`)
-                            //var a = .7, b = aftertaxvalue
-                            //var c = inputvalue.toString().length > 29? a : b
-                            message.channel.send(`$${msg}`)
-    })*/
+        client.taxes = require('./tax.json')
+        if (isNaN(args)) return message.channel.send("Specify numbers only lmao");
+        let inputvalue = Math.floor(args[1])//fetches value for calculations
+
+        let taxcharge = client.taxes[inputvalue.toString().length].gift
+        let aftertaxvalue = Math.floor((inputvalue * taxcharge)).toLocaleString(`en`)
+        var a = Math.floor((inputvalue * 0.7)).toLocaleString(`en`), b = aftertaxvalue
+        var c = inputvalue.toString().length > 29? a : b
+                            message.channel.send(`$${c}`)
+    })
     command(client, 'coinflip',(message) => {
         function getRandomInt(min, max) {
             min = Math.ceil(min);
@@ -330,7 +331,7 @@ client.on("message" , (message) => {
                     var multicalc1 = app < x100? `${((x100-app)/ppd).toFixed(2)} Days  to 100x`: multicalc2
                     var multicalc = app < x60? `${((x60-app)/ppd).toFixed(2)} Days  to 100x`: multicalc1
                     let balanceacc = Math.floor(balance)
-                    var godremarksincome = [`One of a kind player, $${incomenumber2.toFixed(2)} ${incomename} a day is ELITE`, `Earning $${incomepmnumber2.toFixed(2)} ${incomepmname}, dude's probably sitting on the lb rn`]
+                    var godremarksincome = [`One of a kind player, $${incomenumber2.toFixed(2)} ${incomename} a day is ELITE`, `Earning $${incomepmnumber2.toFixed(2)} ${incomepmname}, dude's probably sitting on the lb rn`,`Mf a TOP on god, $${incomenumber2} ${incomename} a day aint no joke for Prestige ${prestige}`]
                     var excellentremarksincome = [`Dude makes $${incomenumber2.toFixed(2)} ${incomename} per day, this dude is top tier for prestige ${prestige}`,`This person earns $${incomenumber2.toFixed(2)} ${incomename} a day, which means they are EXCELLENT for Prestige ${prestige}`, `By earning $${incomepmnumber2.toFixed(2)} ${incomepmname} a minute, this person definitely a future incomelb typa player`,`At $${incomepmnumber2.toFixed(2)} ${incomepmname}, this person is on the right path because they know their stuff very well`]
                     var goodremarksincome = [`This person is a great fit for the corporation, with a good income of ${incomepmnumber2.toFixed(2)} ${incomepmname}`, `A good player overall, with a respectable daily earning of $${incomenumber2.toFixed(2)} ${incomename}`, `Definitely one to hire, there aren't many people earning more than $${incomepmnumber2.toFixed(2)} ${incomepmname} a minute at their prestige level`]
                     var averageremarksincome = [`A solid pick for the corporation overall, at Prestige ${prestige} earning ${incomenumber2.toFixed(2)} ${incomename} a day isn't bad at all`,`Having an income of $${incomepmnumber2.toFixed(2)} ${incomepmname} a minute is nice at Prestige ${prestige}`]
@@ -529,7 +530,7 @@ client.on("message" , (message) => {
                         {name: "💠 Prestige", value: `
 **Points per Day:** ${ppd.toLocaleString(`en`)}
 **Accumulated:** ${app.toLocaleString(`en`)}
-**Level** ${prestige}
+**Level:** ${prestige}
                         `},
                         {name: "💰 Money", value: `
 **Per Day:** $${mpd.toLocaleString(`en`)}
@@ -659,5 +660,7 @@ if(message.content === ',p'){
                       }})})})})}
                     }else return;
                 })*/
-
+client.on("message" , (message) => {
+    
+})
 client.login(config.token)
