@@ -169,17 +169,18 @@ Host: **Heroku**`)
     }) 
     command(client, `gcalc`, (message) => {
         const fs = require("fs")
-        const args = message.content.slice(0).trim().split(' ');
+        let content = message.content.split(" ");
+        let args = content.slice(1);
 
         client.taxes = require('./tax.json')
-        if (isNaN(args)) return message.channel.send("Specify numbers only lmao");
-        let inputvalue = Math.floor(args[1])//fetches value for calculations
+        //if (isNaN(args)) return message.channel.send("Specify numbers only lmao");
+        let inputvalue = Number(args[0])//fetches value for calculations
 
         let taxcharge = client.taxes[inputvalue.toString().length].gift
         let aftertaxvalue = Math.floor((inputvalue * taxcharge)).toLocaleString(`en`)
         var a = Math.floor((inputvalue * 0.7)).toLocaleString(`en`), b = aftertaxvalue
         var c = inputvalue.toString().length > 29? a : b
-                            message.channel.send(`$${c}`)
+                            message.channel.send(`${c}`)
     })
     command(client, 'coinflip',(message) => {
         function getRandomInt(min, max) {
@@ -335,7 +336,7 @@ client.on("message" , (message) => {
                     var excellentremarksincome = [`Dude makes $${incomenumber2.toFixed(2)} ${incomename} per day, this dude is top tier for prestige ${prestige}`,`This person earns $${incomenumber2.toFixed(2)} ${incomename} a day, which means they are EXCELLENT for Prestige ${prestige}`, `By earning $${incomepmnumber2.toFixed(2)} ${incomepmname} a minute, this person definitely a future incomelb typa player`,`At $${incomepmnumber2.toFixed(2)} ${incomepmname}, this person is on the right path because they know their stuff very well`]
                     var goodremarksincome = [`This person is a great fit for the corporation, with a good income of ${incomepmnumber2.toFixed(2)} ${incomepmname}`, `A good player overall, with a respectable daily earning of $${incomenumber2.toFixed(2)} ${incomename}`, `Definitely one to hire, there aren't many people earning more than $${incomepmnumber2.toFixed(2)} ${incomepmname} a minute at their prestige level`]
                     var averageremarksincome = [`A solid pick for the corporation overall, at Prestige ${prestige} earning ${incomenumber2.toFixed(2)} ${incomename} a day isn't bad at all`,`Having an income of $${incomepmnumber2.toFixed(2)} ${incomepmname} a minute is nice at Prestige ${prestige}`]
-                    var badremarksincome = [`This person is just trash, like fr man what is ${incomepmnumber2.toFixed(2)} ${incomepmname} per min`,`With all due respect, with an income of $${incomepmnumber2.toFixed(2)} ${incomepmname} per minute, the only place this mans going is to the garbage bin`, `Earning $${incomenumber2.toFixed(2)} ${incomename} per day at Prestige ${prestige} this person is on another level of ass`]
+                    var badremarksincome = [`This person is just trash, like fr man wtf is ${incomepmnumber2.toFixed(2)} ${incomepmname} per min`,`With all due respect, with an income of $${incomepmnumber2.toFixed(2)} ${incomepmname} per minute, the only place this mans going is to the garbage bin`, `Earning $${incomenumber2.toFixed(2)} ${incomename} per day at Prestige ${prestige} this person is on another level of ass`, `My service provider crashed by processing this garbage ass' profile, like wtf is $${incomepmnumber2}${incomepmname}/min, did this man think with his ass or sumn🤨`]
                     var godremarksstring = godremarksincome[Math.floor(Math.random() * godremarksincome.length)]
                     var excellentremarksstring = excellentremarksincome[Math.floor(Math.random()*godremarksincome.length)]
                     var goodremarksstring = goodremarksincome[Math.floor(Math.random() * goodremarksincome.length)]
@@ -447,7 +448,7 @@ client.on("message" , (message) => {
                     var excellentmultiremarks = [`${totalmulti}x is great for Prestige ${prestige}`, `For Prestige ${prestige}, ${totalmulti}x is impressive`]
                     var goodmultiremarks = [`${totalmulti}x is very good at Prestige ${prestige}`, `${totalmulti}x is nice as hell for Prestige ${prestige}`]
                     var averagemultiremarks = [`a multiplier of ${totalmulti}x is solid for prestige ${prestige}`, `${totalmulti}x is to be expected at Prestige ${prestige}`]
-                    var badmultiremarks = [`horrible multiplier for Prestige ${prestige}`, `${totalmulti}x is garbage for Prestige ${prestige}`]
+                    var badmultiremarks = [`🗑 multiplier for Prestige ${prestige}`, `${totalmulti}x is **bad** for Prestige ${prestige}`]
                     var godmultistring = godmultiremarks[Math.floor(Math.random() * godmultiremarks.length)]
                     var excellentmultistring = excellentmultiremarks[Math.floor(Math.random() * excellentmultiremarks.length)]
                     var goodmultistring = goodmultiremarks[Math.floor(Math.random() * goodmultiremarks.length)]
@@ -518,6 +519,249 @@ client.on("message" , (message) => {
                     var prestigecalc1 = prestige>=3? prestigecalc2 : prestige2b
                     var prestigecalc = prestige>=2? prestigecalc1 : `Too new to understand`
 
+                    var prestige20gdr = ppd>2500000000? `A+` : `A`
+                    var prestige20er = ppd>2500000000? prestige20gdr : `B`
+                    var prestige20gr = ppd>2000000000? prestige20er : `C`
+                    var prestige20ar = ppd>1500000000? prestige20gr : `D`
+                    var prestige20br = ppd>1000000000? prestige20ar : `F`
+
+                    var prestige18gdr = ppd>2500000000? `A+` : `A`
+                    var prestige18er = ppd>1750000000? prestige18gdr : `B`
+                    var prestige18gr = ppd>1250000000? prestige18er : `C`
+                    var prestige18ar = ppd>850000000? prestige18gr : `D`
+                    var prestige18br = ppd>600000000? prestige18ar : `F`
+
+                    var prestige16gdr = ppd>2000000000? `A+` : `A`
+                    var prestige16er = ppd>1500000000? prestige16gdr : `B`
+                    var prestige16gr = ppd>1000000000? prestige16er : `C`
+                    var prestige16ar = ppd>750000000? prestige16gr : `D`
+                    var prestige16br = ppd>400000000? prestige16ar : `F`
+
+                    var prestige14gdr = ppd>1750000000? `A+` : `A`
+                    var prestige14er = ppd>1500000000? prestige14gdr : `B`
+                    var prestige14gr = ppd>1000000000? prestige14er : `C`
+                    var prestige14ar = ppd>600000000? prestige14gr : `D`
+                    var prestige14br = ppd>300000000? prestige14ar : `F`
+
+                    var prestige12gdr = ppd>1500000000? `A+` : `A`
+                    var prestige12er = ppd>1000000000? prestige12gdr : `B`
+                    var prestige12gr = ppd>600000000? prestige12er : `C`
+                    var prestige12ar = ppd>300000000? prestige12gr : `D`
+                    var prestige12br = ppd>150000000? prestige12ar : `F`
+
+                    var prestige10gdr = ppd>1500000000? `A+` : `A`
+                    var prestige10er = ppd>1000000000? prestige10gdr : `B`
+                    var prestige10gr = ppd>500000000? prestige10er : `C`
+                    var prestige10ar = ppd>300000000? prestige10gr : `D`
+                    var prestige10br = ppd>100000000? prestige10ar : `F`
+
+                    var prestige8gdr = ppd>1000000000? `A+` : `A`
+                    var prestige8er = ppd>500000000? prestige8gdr : `B`
+                    var prestige8gr = ppd>250000000? prestige8er : `C`
+                    var prestige8ar = ppd>100000000? prestige8gr : `D`
+                    var prestige8br = ppd>50000000? prestige8ar : `F`
+                   
+                    var prestige5gdr =ppd>150000000? `A+` : `A`
+                    var prestige5er = ppd>100000000? prestige5gdr : `B`
+                    var prestige5gr =ppd>50000000? prestige5er : `C`
+                    var prestige5ar = ppd>25000000? prestige5gr : `D`
+                    var prestige5br = ppd>10000000? prestige5ar : `F`
+
+                    var prestige4gdr = ppd>50000000? `A+` : `A`
+                    var prestige4er = ppd>25000000? prestige4gdr : `B`
+                    var prestige4gr = ppd>10000000? prestige4er : `C`
+                    var prestige4ar = ppd>1000000? prestige4gr : `D`
+                    var prestige4br = ppd>500000? prestige4ar : `F`
+
+                    var prestige3gdr = ppd>10000000? `A+` : `A`
+                    var prestige3er = ppd>5000000? prestige3gdr : goodmultistring
+                    var prestige3gr = ppd>1000000? prestige3er : `C`
+                    var prestige3ar = ppd>500000? prestige3gr : `D`
+                    var prestige3br = ppd>50000? prestige3ar : `F`
+
+                    var prestige2gdr = ppd>1000000? `A+` : `A`
+                    var prestige2er = ppd>250000? prestige2gdr : `B`
+                    var prestige2gr = ppd>100000? prestige2er : `C`
+                    var prestige2ar = ppd>10000? prestige2gr : `D`
+                    var prestige2br = ppd>1000? prestige2ar : `F`
+
+                    var prestigecalcr10 = prestige>=20? prestige20br : prestige18br
+                    var prestigecalcr9 = prestige>=18? prestigecalcr10 : prestige16br
+                    var prestigecalcr8 = prestige>=16? prestigecalcr9 : prestige14br
+                    var prestigecalcr7 = prestige>=14? prestigecalcr8 : prestige12br
+                    var prestigecalcr6 = prestige>=12? prestigecalcr7 : prestige10br
+                    var prestigecalcr5 = prestige>=10? prestigecalcr6 : prestige8br
+                    var prestigecalcr4 = prestige>=8? prestigecalcr5 : prestige5br
+                    var prestigecalcr3 = prestige>=5? prestigecalcr4 : prestige4br
+                    var prestigecalcr2 = prestige>=4? prestigecalcr3 : prestige3br
+                    var prestigecalcr1 = prestige>=3? prestigecalcr2 : prestige2br
+                    var prestigecalcr = prestige>=2? prestigecalcr1 : `Too New`
+
+                    var godplayerr13 = prestige>=35 && totalmulti>=3500 && mpm>50000000000000? `A+` : `A`
+                    var excellentplayerr13 = prestige>=35 && totalmulti>=3000 && mpm>45000000000000?  godplayerr13 : `B` 
+                    var goodplayerr13 =prestige>=35 && totalmulti>=3000 && mpm>40000000000000?  excellentplayerr13 : `C`
+                    var averageplayerr13 = prestige>=35 && totalmulti>=2500 && mpm>35000000000000?  goodplayerr13 : `D`
+                    var badplayerr13 = prestige>=35 && totalmulti>=2000 && mpm>30000000000000?  averageplayerr13 :`F`
+
+                    var godplayerr12 = prestige>=30 && totalmulti>=3500 && mpm>45000000000000? `A+` : `A`
+                    var excellentplayerr12 = prestige>=30 && totalmulti>=3000 && mpm>40000000000000?  godplayerr12 : `B` 
+                    var goodplayerr12 =prestige>=30 && totalmulti>=3000 && mpm>35000000000000?  excellentplayerr12 : `C`
+                    var averageplayerr12 = prestige>=30 && totalmulti>=2500 && mpm>30000000000000?  goodplayerr12 : `D`
+                    var badplayerr12 = prestige>=30 && totalmulti>=2000 && mpm>2500000000000?  averageplayerr12 :`F`
+
+                    var godplayerr11 = prestige>=25 && totalmulti>=3500 && mpm>40000000000000? `A+` : `A`
+                    var excellentplayerr11 = prestige>=25 && totalmulti>=3000 && mpm>35000000000000?  godplayerr11 : `B` 
+                    var goodplayerr11 =prestige>=25 && totalmulti>=3000 && mpm>30000000000000?  excellentplayerr11 : `C`
+                    var averageplayerr11 = prestige>=25 && totalmulti>=2500 && mpm>2500000000000?  goodplayerr11 : `D`
+                    var badplayerr11 = prestige>=25 && totalmulti>=2000 && mpm>2000000000000?  averageplayerr11 :`F`
+
+                    var godplayerr10 = prestige>=20 && totalmulti>=3500 && mpm>30000000000000? `A+` : `A`
+                    var excellentplayerr10 = prestige>=20 && totalmulti>=3000 && mpm>25000000000000?  godplayerr10 : `B` 
+                    var goodplayerr10 =prestige>=20 && totalmulti>=3000 && mpm>20000000000000?  excellentplayerr10 : `C`
+                    var averageplayerr10 = prestige>=20 && totalmulti>=2500 && mpm>1500000000000?  goodplayerr10 : `D`
+                    var badplayerr10 = prestige>=20 && totalmulti>=2000 && mpm>7500000000000?  averageplayerr10 :`F`
+
+
+                    var godplayerr9 = prestige>=18 && totalmulti>=3500 && mpm>20000000000000? `A+` : `A`
+                    var excellentplayerr9 = prestige>=18 && totalmulti>=3000 && mpm>15000000000000?  godplayerr9 : `B` 
+                    var goodplayerr9 =prestige>=18 && totalmulti>=3000 && mpm>10000000000000?  excellentplayerr9 : `C`
+                    var averageplayerr9 = prestige>=18 && totalmulti>=2500 && mpm>7500000000000?  goodplayerr9 : `D`
+                    var badplayerr9 = prestige>=18 && totalmulti>=2000 && mpm>5000000000000?  averageplayerr9 :`F`
+
+                    var godplayerr8 = prestige>=16 && totalmulti>=3500 && mpm>12500000000000? `A+` : `A`
+                    var excellentplayerr8 = prestige>=16 && totalmulti>=3000 && mpm>10000000000000?  godplayerr8 : `B` 
+                    var goodplayerr8 =prestige>=16 && totalmulti>=2750 && mpm>7500000000000?  excellentplayerr8 : `C`
+                    var averageplayerr8 = prestige>=16 && totalmulti>=2250 && mpm>5000000000000?  goodplayerr8 : `D`
+                    var badplayerr8 = prestige>=16 && totalmulti>=1750 && mpm>2500000000000?  averageplayerr8 :`F`
+
+                    var godplayerr7 = prestige>=14 && totalmulti>3500 && mpm>750000000000? `A+` : `A`
+                    var excellentplayerr7 = prestige>=14 && totalmulti>3000 && mpm>500000000000?  godplayerr7 : `B` 
+                    var goodplayerr7 =prestige>=14 && totalmulti>2500 && mpm>400000000000?  excellentplayerr7 : `C`
+                    var averageplayerr7 = prestige>=14 && totalmulti>2000 && mpm>3000000000000?  goodplayerr7 : `D`
+                    var badplayerr7 = prestige>=14 && totalmulti>1500 && mpm>2000000000000?  averageplayerr7 :`F`
+
+                    var godplayerr6 = prestige>=12 && totalmulti>=3500 && mpm>3500000000000? `A+` : `A`
+                    var excellentplayerr6 = prestige>=12 && totalmulti>=3000 && mpm>3000000000000?  godplayerr6 : `B` 
+                    var goodplayerr6 = prestige>=12 && totalmulti>=2500 && mpm>2500000000000?  excellentplayerr6 : `C`
+                    var averageplayerr6 = prestige>=12 && totalmulti>=2000 && mpm>2000000000000?  goodplayerr6 : `D`
+                    var badplayerr6 = prestige>=12 && totalmulti>=1500 && mpm>1000000000000?  averageplayerr6 :`F`
+
+                    var godplayerr5 =  prestige>=10 && totalmulti>3500 && mpm>2500000000000? `A+` : `A`
+                    var excellentplayerr5 =  prestige>=10 && totalmulti>3000 && mpm>2000000000000?  godplayerr5 : `B` 
+                    var goodplayerr5 =  prestige>=10 && totalmulti>2500 && mpm>1500000000000?  excellentplayerr5 : `C`
+                    var averageplayerr5 =  prestige>=10 && totalmulti>1500 && mpm>1000000000000?  goodplayerr5 : `D`
+                    var badplayerr5 =   prestige>=10 && totalmulti>1250 && mpm>750000000000?  averageplayerr5 :`F`
+
+                    var godplayerr4 = prestige>=8 && totalmulti>=3000 && mpm>1500000000000? `A+` : `A`
+                    var excellentplayerr4 = prestige>=8 && totalmulti>2500 && mpm>1000000000000?  godplayerr4 : `B` 
+                    var goodplayerr4 = prestige>=8 && totalmulti>2000 && mpm>750000000000?  excellentplayerr4 : `C`
+                    var averageplayerr4 = prestige>=8 && totalmulti>1500 && mpm>600000000000?  goodplayerr4 : `D`
+                    var badplayerr4 =  prestige>=8 && totalmulti>1000 && mpm>500000000000?  averageplayerr4 :`F`
+
+                    var godplayerr3 = prestige>=5 && totalmulti>=2500? `A+` : `A`
+                    var excellentplayerr3 = prestige>=5 && totalmulti>=2000?  godplayerr3 :`B` 
+                    var goodplayerr3 = prestige>=5 && totalmulti>=1500? excellentplayerr3 : `C`
+                    var averageplayerr3 = prestige>=5 && totalmulti>=1000? goodplayerr3 : `D`
+                    var badplayerr3 = prestige>=5 && totalmulti>=500? averageplayerr3 : `F`
+
+                    var godplayerr2 = prestige>=4 && totalmulti>=1500? `A+` : `A`
+                    var excellentplayerr2 = prestige>=4 && totalmulti>=1250?  godplayerr2 : `B` 
+                    var goodplayerr2 = prestige>=4 && totalmulti>=750? excellentplayerr2 : `C`
+                    var averageplayerr2 = prestige>=4 && totalmulti>=500? goodplayerr2 : `D`
+                    var badplayerr2 = prestige>=4 && totalmulti>=300? averageplayerr2 : `F`
+
+                    var godplayerr1 = prestige>=3 && totalmulti>=500? `A+` : `A`
+                    var excellentplayerr1 = prestige>=3 && totalmulti>=300? godplayerr1 : `B` 
+                    var goodplayerr1 = prestige>=3 && totalmulti>=150? excellentplayerr1 : `C`
+                    var averageplayerr1 = prestige>=3 && totalmulti>=100? goodplayerr1 : `D`
+                    var badplayerr1 = prestige>=3 && totalmulti>=50? averageplayerr1 : `F`
+
+                    var godplayerr = prestige>=2 && totalmulti>=150? `A+` : `A`
+                    var excellentplayerr = prestige>=2 && totalmulti>=125? godplayerr : `B`
+                    var goodplayerr = prestige>=2 && totalmulti>=100? excellentplayerr : `C`
+                    var averageplayerr = prestige>=2 && totalmulti>=50? goodplayerr : `D`
+                    var badplayerr = prestige>=2 && totalmulti>=25? averageplayerr : `F`
+                    
+                    var determineprestiger13 = prestige>=35? badplayerr13 : badplayerr12
+                    var determineprestiger12 = prestige>=30? determineprestiger13 : badplayerr11
+                    var determineprestiger11 = prestige>=25? determineprestiger12 : badplayerr10
+                    var determineprestiger10 = prestige>=20? determineprestiger11 : badplayerr9
+                    var determineprestiger9 = prestige>=18? determineprestiger10 : badplayerr8
+                    var determineprestiger8 = prestige>=16? determineprestiger9 : badplayerr7
+                    var determineprestiger7 = prestige>=14? determineprestiger8 : badplayerr6
+                    var determineprestiger6 = prestige>=12? determineprestiger7 : badplayerr5
+                    var determineprestiger5 = prestige>=10? determineprestiger6 : badplayerr4
+                    var determineprestiger4 = prestige>=8? determineprestiger5 : badplayerr3
+                    var determineprestiger3 = prestige>=5? determineprestiger4 : badplayerr2
+                    var determineprestiger2 = prestige>=4? determineprestiger3 : badplayerr1
+                    var determineprestiger1 = prestige>=3? determineprestiger2 : badplayerr
+                    var determineprestiger = prestige>=2? determineprestiger1 : `Too new`
+
+                    var prestige16gdg = prestige>=16 && totalmulti>=3500? `A+` : `A`
+                    var prestige16eg = prestige>=16 && totalmulti>=3000? prestige16gdg : `B`
+                    var prestige16gg = prestige>=16 && totalmulti>=2750? prestige16eg : `C`
+                    var prestige16ag = prestige>=16 && totalmulti>=2250? prestige16gg : `D`
+                    var prestige16bg = prestige>=16 && totalmulti>=1750? prestige16ag : `F`
+
+                    var prestige14gdg = prestige>=14 && totalmulti>=3500? `A+` : `A`
+                    var prestige14eg = prestige>=14 && totalmulti>=3000? prestige14gdg : `B`
+                    var prestige14gg = prestige>=14 && totalmulti>=2500? prestige14eg : `C`
+                    var prestige14ag = prestige>=14 && totalmulti>=2000? prestige14gg : `D`
+                    var prestige14bg = prestige>=14 && totalmulti>=1500? prestige14ag : `F`
+
+                    var prestige12gdg = prestige>=12 && totalmulti>=3000? `A+` : `A`
+                    var prestige12eg = prestige>=12 && totalmulti>=2750? prestige12gdg : `B`
+                    var prestige12gg = prestige>=12 && totalmulti>=2500? prestige12eg : `C`
+                    var prestige12ag = prestige>=12 && totalmulti>=2000? prestige12gg : `D`
+                    var prestige12bg = prestige>=12 && totalmulti>=1500? prestige12ag : `F`
+
+                    var prestige10gdg = prestige>=10 && totalmulti>=3000? `A+` : `A`
+                    var prestige10eg = prestige>=10 && totalmulti>=2500? prestige10gdg : `B`
+                    var prestige10gg = prestige>=10 && totalmulti>=2000? prestige10eg : `C`
+                    var prestige10ag = prestige>=10 && totalmulti>=1500? prestige10gg : `D`
+                    var prestige10bg = prestige>=10 && totalmulti>=1250? prestige10ag : `F`
+
+                    var prestige8gdg = prestige>=8 && totalmulti>=3000? `A+` : `A`
+                    var prestige8eg = prestige>=8 && totalmulti>=2500? prestige8gdg : `B`
+                    var prestige8gg = prestige>=8 && totalmulti>=2000? prestige8eg : `C`
+                    var prestige8ag = prestige>=8 && totalmulti>=1500? prestige8gg : `D`
+                    var prestige8bg = prestige>=8 && totalmulti>=1000? prestige8ag : `F`
+                   
+                    var prestige5gdg = prestige>=5 && totalmulti>=2500? `A+` : `A`
+                    var prestige5eg = prestige>=5 && totalmulti>=2000? prestige5gdg : `B`
+                    var prestige5gg = prestige>=5 && totalmulti>=1500? prestige5eg : `C`
+                    var prestige5ag = prestige>=5 && totalmulti>=1000? prestige5gg : `D`
+                    var prestige5bg = prestige>=5 && totalmulti>=500? prestige5ag : `F`
+
+                    var prestige4gdg = prestige>=4 && totalmulti>=1250? `A+` : `A`
+                    var prestige4eg = prestige>=4 && totalmulti>=1000? prestige4gdg : `B`
+                    var prestige4gg = prestige>=4 && totalmulti>=750? prestige4eg : `C`
+                    var prestige4ag = prestige>=4 && totalmulti>=500? prestige4gg : `D`
+                    var prestige4bg = prestige>=4 && totalmulti>=300? prestige4ag : `F`
+
+                    var prestige3gdg = prestige>=3 && totalmulti>=750? `A+` : `A`
+                    var prestige3eg = prestige>=3 && totalmulti>=500? prestige3gdg : `B`
+                    var prestige3gg = prestige>=3 && totalmulti>=350? prestige3eg : `C`
+                    var prestige3ag = prestige>=3 && totalmulti>=250? prestige3gg : `D`
+                    var prestige3bg = prestige>=3 && totalmulti>=100? prestige3ag : `F`
+
+                    var prestige2gdg = prestige>=2 && totalmulti>=500? `A+` : `A`
+                    var prestige2eg = prestige>=2 && totalmulti>=250? prestige2gdg : `B`
+                    var prestige2gg = prestige>=2 && totalmulti>=100? prestige2eg : `C`
+                    var prestige2ag = prestige>=2 && totalmulti>=50? prestige2gg : `D`
+                    var prestige2bg = prestige>=2 && totalmulti>=25? prestige2ag : `F`
+
+                    var prestigecalcg8 = prestige>=16? prestige16bg : prestige14bg
+                    var prestigecalcg7 = prestige>=14? prestigecalcg8 : prestige12bg
+                    var prestigecalcg6 = prestige>=12? prestigecalcg7 : prestige10bg
+                    var prestigecalcg5 = prestige>=10? prestigecalcg6 : prestige8bg
+                    var prestigecalcg4 = prestige>=8? prestigecalcg5 : prestige5bg
+                    var prestigecalcg3 = prestige>=5? prestigecalcg4 : prestige4bg
+                    var prestigecalcg2 = prestige>=4? prestigecalcg3 : prestige3bg
+                    var prestigecalcg1 = prestige>=3? prestigecalcg2 : prestige2bg
+                    var prestigecalcg = prestige>=2? prestigecalcg1 : `Too new to understand`
+
+
                     var permmultical3 = permmulti>=4? `This person is very experienced, a perm multi of ${permmulti}x could only mean they've been an active grinder or REALLY lucky`: `This person has a very respectable perm multi of ${permmulti}x, probably opened ALOT of briefcases` 
                     var permultical2 = permmulti>=3? permmultical3 : `Has a good permanent multiplier of ${permmulti}x, definitely opened a number of briefcases`
                     var permmultical1 = permmulti>=2.0? permultical2 : `probably opened a few briefcases which is why they got a perm multi of ${permmulti}x`
@@ -534,16 +778,23 @@ client.on("message" , (message) => {
                         `},
                         {name: "💰 Money", value: `
 **Per Day:** $${mpd.toLocaleString(`en`)}
+**Per Week:** ${(mpd*7).toLocaleString(`en`)}
 **Accumulated:** $${balanceacc.toLocaleString(`en`)}
                         `},
                         {name: `📈 Multiplier`, value: `
 **Current**: ${totalmulti}x
 **Potential**: ${multicalc}`
-                        }, 
+                        }, {name: `🌐 Ratings`, value : 
+`**Income:** ${determineprestiger}
+**Multiplier:** ${prestigecalcg}
+**Prestige Per Day:** ${prestigecalcr}                             
+                    
+                    `},
                         { name:`📝 Notes`, value: `
 **1.** ${determineprestige}
 **2.** ${prestigecalc}
-**3.** ${permmultical}                      
+**3.** ${permmultical}          
+            
                         `}
                     ).setFooter(`Requested by ${message.author.username}`)
                     message.channel.send(embed1)
@@ -599,20 +850,22 @@ if(message.content === ',p'){
                             var f = (c/ppd) > 0? `${(c / ppd).toFixed(2)} Days or ${((c / ppd) * 24).toFixed(2)} Hours` : fin
                             var g = (d/ppd) > 0? `${(d / ppd).toFixed(2)} Days or ${((d / ppd) * 24).toFixed(2)} Hours` : fin
                             var h = (e/ppd) > 0? `${(e / ppd).toFixed(2)} Days or ${((e / ppd) * 24).toFixed(2)} Hours` : fin
-                            let oneh = (2787950 - bpp)
-                            let fiveh = (69702250 - bpp)
-                            let onesh = (279340210 - bpp)
-                            let twosh = ((279340210 + 11000000) - bpp)
+                            let oneh = (2787950 - bpp) // one hundred
+                            let fiveh = (69702250 - bpp) // five hundred 
+                            let onesh = (279340210 - bpp) // one 
+                            let twosh = ((1127301050) - bpp)
                             let threesh = (3621882780- bpp)
                             let threefivesh = (14528281710 - bpp)
                             let foursh = (115574085430 - bpp)
+                            let fourfivesh = (1116759294810 -bpp)
                             var i = b > 2787950? a : oneh
                             var j = b > 69702250? a : fiveh
                             var k = b > 279340210? a : onesh
-                            var l = b > (279340210 + 11000000)? a : twosh
+                            var l = b > (1127301050)? a : twosh
                             var m = b > 3621882780? a : threesh
                             var n = b > 14528281710? a : threefivesh
                             var o = b > 115574085430? a : foursh
+                            var x = b > 1116759294810? a: fourfivesh
                             var ach = `✅ Achieved`
                             var q = (i/ppd) > 0? `${(i / ppd).toFixed(2)} Days or ${((i / ppd) * 24).toFixed(2)} Hours` : ach
                             var r = (j/ppd) > 0? `${(j / ppd).toFixed(2)} Days or ${((j / ppd) * 24).toFixed(2)} Hours` : ach
@@ -621,7 +874,7 @@ if(message.content === ',p'){
                             var u = (m/ppd) > 0? `${(m / ppd).toFixed(2)} Days or ${((m / ppd) * 24).toFixed(2)} Hours` : ach
                             var v = (n/ppd) > 0? `${(n / ppd).toFixed(2)} Days or ${((n / ppd) * 24).toFixed(2)} Hours` : ach
                             var w = (o/ppd) > 0? `${(o / ppd).toFixed(2)} Days or ${((o / ppd) * 24).toFixed(2)} Hours` : ach
-                            
+                            var y = (x/ppd) > 0? `${(x / ppd).toFixed(2)} Days or ${((x / ppd) * 24).toFixed(2)} Hours` : ach
                             const embed1 = new Discord.MessageEmbed()
                             .setTitle("Profile Report")
                             .setAuthor(`${message.author.username}`,`${message.author.avatarURL()}`)
@@ -644,6 +897,7 @@ if(message.content === ',p'){
 **3000x**: ${u}
 **3500x**: ${v}
 **4000x**: ${w}
+**4500x**: ${y}
 **📉 Suggested Prestige:**
 
 **🎁 Gifts After Tax**
@@ -661,6 +915,7 @@ if(message.content === ',p'){
                     }else return;
                 })*/
 client.on("message" , (message) => {
+    
     
 })
 client.login(config.token)
