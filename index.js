@@ -332,7 +332,7 @@ client.on("message" , (message) => {
                     var multicalc1 = app < x100? `${((x100-app)/ppd).toFixed(2)} Days  to 100x`: multicalc2
                     var multicalc = app < x60? `${((x60-app)/ppd).toFixed(2)} Days  to 100x`: multicalc1
                     let balanceacc = Math.floor(balance)
-                    var godremarksincome = [`One of a kind player, $${incomenumber2.toFixed(2)} ${incomename} a day is ELITE`, `Earning $${incomepmnumber2.toFixed(2)} ${incomepmname}, dude's probably sitting on the lb rn`,`Mf a TOP on god, $${incomenumber2} ${incomename} a day aint no joke for Prestige ${prestige}`]
+                    var godremarksincome = [`One of a kind player, $${incomenumber2.toFixed(2)} ${incomename} a day is ELITE`, `Earning $${incomepmnumber2.toFixed(2)} ${incomepmname}, dude's probably sitting on the lb rn`,`Mf a TOP on god, $${incomenumber2.toFixed(2)} ${incomename} a day aint no joke for Prestige ${prestige}`]
                     var excellentremarksincome = [`Dude makes $${incomenumber2.toFixed(2)} ${incomename} per day, this dude is top tier for prestige ${prestige}`,`This person earns $${incomenumber2.toFixed(2)} ${incomename} a day, which means they are EXCELLENT for Prestige ${prestige}`, `By earning $${incomepmnumber2.toFixed(2)} ${incomepmname} a minute, this person definitely a future incomelb typa player`,`At $${incomepmnumber2.toFixed(2)} ${incomepmname}, this person is on the right path because they know their stuff very well`]
                     var goodremarksincome = [`This person is a great fit for the corporation, with a good income of ${incomepmnumber2.toFixed(2)} ${incomepmname}`, `A good player overall, with a respectable daily earning of $${incomenumber2.toFixed(2)} ${incomename}`, `Definitely one to hire, there aren't many people earning more than $${incomepmnumber2.toFixed(2)} ${incomepmname} a minute at their prestige level`]
                     var averageremarksincome = [`A solid pick for the corporation overall, at Prestige ${prestige} earning ${incomenumber2.toFixed(2)} ${incomename} a day isn't bad at all`,`Having an income of $${incomepmnumber2.toFixed(2)} ${incomepmname} a minute is nice at Prestige ${prestige}`]
@@ -519,7 +519,7 @@ client.on("message" , (message) => {
                     var prestigecalc1 = prestige>=3? prestigecalc2 : prestige2b
                     var prestigecalc = prestige>=2? prestigecalc1 : `Too new to understand`
 
-                    var prestige20gdr = ppd>2500000000? `A+` : `A`
+                    var prestige20gdr = ppd>3000000000? `A+` : `A`
                     var prestige20er = ppd>2500000000? prestige20gdr : `B`
                     var prestige20gr = ppd>2000000000? prestige20er : `C`
                     var prestige20ar = ppd>1500000000? prestige20gr : `D`
