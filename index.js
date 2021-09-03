@@ -183,7 +183,20 @@ Host: **Heroku**`)
         var a = Math.floor((inputvalue * 0.7)).toLocaleString(`en`), b = aftertaxvalue
         var c = inputvalue.toString().length > 29? a : b
                             message.channel.send(`${c}`)
+    }) 
+    command(client, `bpcalc`, (message) => {
+        const fs = require(`fs`)
+        let content = message.content.split(` `)
+        let args = content.splice(1);
+
+        client.prestige = require(`./prestiges.json`)
+        let prestigevalue = Number(args[0])
+        let calcvalue = Number(args[1])
+        let costperpoint = client.prestige[prestigevalue-1].priceperpoint;
+        let balprescalc = calcvalue / costperpoint 
+
     })
+
     command(client, 'coinflip',(message) => {
         function getRandomInt(min, max) {
             min = Math.ceil(min);
@@ -203,6 +216,16 @@ Host: **Heroku**`)
 
     }) 
 
+    command(client, "guide", (message) => {
+        if (message.member.roles.cache.has(`850275705975472189`))
+        {
+        const Embedguide = new Discord.MessageEmbed()
+        .setColor(`#FEFFA3`)
+        .addField(`Guides`,`[Prestige Guide](https://docs.google.com/document/d/15FonIjH2xuxVSX5BJsfvHi2b9qUEIAmnq3mtj2UrO0o/edit?usp=sharing)` )
+        
+        
+        message.channel.send(Embedguide)
+}})
     command(client, "rock",(message) => {
         var tests = ["Built different💯🥶",
     "Cut from different cloth📠💯",
@@ -273,12 +296,12 @@ Host: **Heroku**`)
 client.on("message" , (message) => {
     lookupreact
 })
-/*
-client.on("message" , (message) => {
+
+/*client.on("message" , (message) => {
 const collector = new Discord.MessageCollector(message.channel, m => m.embeds.length > 0, { maxProcessed: 1, max: 1 });
 if(message.content === ',p'){
-    if (message.member.roles.cache.has(`876815413915303956`)) //checks if member has the 'Exclusives' role
-    {
+    //if (message.member.roles.cache.has(`876815413915303956`)) //checks if member has the 'Exclusives' role
+    //{
     collector.on('collect', (el, c) =>{
       let text = el.embeds[0].fields[1].value;
       var balance = text.split('💰 $').pop().split('\n')[0].replace(/,/g, '')
@@ -300,8 +323,8 @@ if(message.content === ',p'){
                             'https://static.bangkokpost.com/media/content/20200903/c1_3738615.jpg'
                             let bil = 1000000000
                             client.msgs = require('./prestiges.json')
-                            let _message = client.msgs[msg.content-1].priceperpoint;
-                            let ppm = (income / _message) //prestige points per minute
+                            let prestigelevel = client.msgs[msg.content-1].priceperpoint; //matches prestige level from json file
+                            let ppm = (income / prestigelevel) //prestige points per minute
                             let ppd = (ppm * 1440)  // prestige points per day
                             let giftReceive = income * 1440 //max gift amount 
                             client.taxes = require('./tax.json')
@@ -310,58 +333,217 @@ if(message.content === ',p'){
                             let giftGive = income * 120 // giftable amt
                             let taxchargegift = client.taxes[giftGive.toString().length].gift;
                             let AfterTaxGive = (giftGive * taxchargegift).toLocaleString(`en`)
-                            let bpp = balance / _message //balance prestige points
-                            let bmb = 1000000000 - bpp // billion minus balance
-                            var a = 0 , b = bpp; 
-                            let tmb = 10000000000 - bpp //ten billion minus balance
-                            let hmb = 100000000000 - bpp // hundred billion minus balance
-                            var c = b > 1000000000? a : bmb; //shortened version of if-else statement
-                            var d = b > 10000000000? a : tmb;
-                            var e = b > 100000000000? a : hmb;
+                            let bpp = balance / prestigelevel //balance prestige points
+                            let bmb = (bil) - bpp // billion minus balance
+                            let tmb = (bil*10) - bpp //ten billion minus balance
+                            let hmb = (bil*100) - bpp // hundred billion minus balance
+                            let trilmb = (bil*1000) - bpp // shows tril pp minus balance pp
+                            let tentrilmb = (bil*10000) - bpp // shows ten tril minus bal pp
+                            var zero = 0 , bal = bpp; 
+                            var cib = bal > 1000000000? zero : bmb; //check if balance pp is greater than stated, show zero, else calc how much left
+                            var citb = bal > 10000000000? zero : tmb; //check if ten bil pp
+                            var cihb = bal > 100000000000? zero : hmb; //check if hundred bil pp
+                            var cit = bal > 1000000000000? zero : trilmb //check if tril pp
+                            var citt = bal > 10000000000000? zero : tentrilmb //check if ten tril pp
                             var fin = `✅Finished`
-                            var f = (c/ppd) > 0? `${(c / ppd).toFixed(2)} Days or ${((c / ppd) * 24).toFixed(2)} Hours` : fin
-                            var g = (d/ppd) > 0? `${(d / ppd).toFixed(2)} Days or ${((d / ppd) * 24).toFixed(2)} Hours` : fin
-                            var h = (e/ppd) > 0? `${(e / ppd).toFixed(2)} Days or ${((e / ppd) * 24).toFixed(2)} Hours` : fin
-                            let oneh = (2787950 - bpp) // one hundred
-                            let fiveh = (69702250 - bpp) // five hundred 
-                            let onesh = (279340210 - bpp) // one 
-                            let twosh = ((1127301050) - bpp)
-                            let threesh = (3621882780- bpp)
-                            let threefivesh = (14528281710 - bpp)
-                            let foursh = (115574085430 - bpp)
-                            let fourfivesh = (1116759294810 -bpp)
-                            var i = b > 2787950? a : oneh
-                            var j = b > 69702250? a : fiveh
-                            var k = b > 279340210? a : onesh
-                            var l = b > (1127301050)? a : twosh
-                            var m = b > 3621882780? a : threesh
-                            var n = b > 14528281710? a : threefivesh
-                            var o = b > 115574085430? a : foursh
-                            var x = b > 1116759294810? a: fourfivesh
-                            var ach = `✅ Achieved`
-                            var q = (i/ppd) > 0? `${(i / ppd).toFixed(2)} Days or ${((i / ppd) * 24).toFixed(2)} Hours` : ach
-                            var r = (j/ppd) > 0? `${(j / ppd).toFixed(2)} Days or ${((j / ppd) * 24).toFixed(2)} Hours` : ach
-                            var s = (k/ppd) > 0? `${(k / ppd).toFixed(2)} Days or ${((k / ppd) * 24).toFixed(2)} Hours` : ach
-                            var t = (l/ppd) > 0? `${(l / ppd).toFixed(2)} Days or ${((l / ppd) * 24).toFixed(2)} Hours` : ach
-                            var u = (m/ppd) > 0? `${(m / ppd).toFixed(2)} Days or ${((m / ppd) * 24).toFixed(2)} Hours` : ach
-                            var v = (n/ppd) > 0? `${(n / ppd).toFixed(2)} Days or ${((n / ppd) * 24).toFixed(2)} Hours` : ach
-                            var w = (o/ppd) > 0? `${(o / ppd).toFixed(2)} Days or ${((o / ppd) * 24).toFixed(2)} Hours` : ach
-                            var y = (x/ppd) > 0? `${(x / ppd).toFixed(2)} Days or ${((x / ppd) * 24).toFixed(2)} Hours` : ach
+                            var bilpp= (cib/ppd) > 0? `${(cib / ppd).toFixed(2)} Days or ${((cib / ppd) * 24).toFixed(2)} Hours` : fin
+                            var tenbilpp = (citb/ppd) > 0? `${(citb / ppd).toFixed(2)} Days or ${((citb / ppd) * 24).toFixed(2)} Hours` : fin
+                            var hundbilpp = (cihb/ppd) > 0? `${(cihb / ppd).toFixed(2)} Days or ${((cihb / ppd) * 24).toFixed(2)} Hours` : fin
+                            var trilpp = (cit/ppd) > 0? `${(cit / ppd).toFixed(2)} Days or ${((cit / ppd) * 24).toFixed(2)} Hours` : fin
+                            var tentrilpp = (citt/ppd) > 0? `${(citt / ppd).toFixed(2)} Days or ${((citt / ppd) * 24).toFixed(2)} Hours` : fin
+                            let x100 = (2787950 - bpp) // pp left for x100
+                            let x500 = (69702250 - bpp) // pp left for x500
+                            let x1000 = (279340210 - bpp) 
+                            let x1500 = (629118200 - bpp)
+                            let x2000 = 1119801050 - bpp
+                            let x2500 = 1753639510 - bpp
+                            let x3000 = (2536257780- bpp)
+                            let x3500 = (3481719210 - bpp)
+                            let x4000 = (4623060060 - bpp)
+                            let x4500 = (6054529185 -bpp) 
+                            let x5000 = (7989494838 - bpp)
+                            let x5500 = 10979393524 - bpp
+                            let x6000 = (16397515140 - bpp)
+                            let x6500 = 27677088733 - bpp
+                            let x7000 = (53401181263 - bpp)
+                            let x7500 = 115027466918 - bpp
+                            let x8000 = (266200123846 - bpp)
+                            let x8500 = (641029604741 -bpp)
+                            let x9000 = 1574792035064 - bpp
+                            let x9500 = 3905677732845 - bpp
+                            let x10000 = 9729162490493 - bpp
+                            var check100 = bal > 2787950? zero : x100 //checks if balance pp is greater than pp req for 100x 
+                            var check500 = bal > 69702250? zero : x500 // checks for 500x
+                            var check1000 = bal > 279340210? zero : x1000 //checks for 1000x
+                            var check1500 = bal > 629118200? zero : x1500
+                            var check2000 = bal > (1119801050)? zero : x2000 
+                            var check2500 = bal > 1753639510? zero : x2500
+                            var check3000 = bal > 2536257780? zero : x3000
+                            var check3500 = bal > 3481719210? zero : x3500
+                            var check4000 = bal > 4623060060? zero : x4000
+                            var check4500 = bal > 6054529185? zero: x4500
+                            var check5000 = bal > 7989494838? zero: x5000
+                            var check5500 = bal > 10979393524? zero: x5500
+                            var check6000 = bal > 16397515140? zero: x6000
+                            var check6500 = bal > 27677088733? zero : x6500
+                            var check7000 = bal > 53401181263? zero: x7000
+                            var check7500 = bal > 115027466918? zero: x7500
+                            var check8000 = bal > 266200123846? zero: x8000
+                            var check8500 = bal > 641029604741? zero: x8500
+                            var check9000 = bal > 1574792035064? zero: x9000
+                            var check9500 = bal > 3905677732845? zero: x9500
+                            var check10000 = bal > 9729162490493? zero: x10000  
+                            var tt100 = (check100/ppd) > 0? `**100x**: ${(check100 / ppd).toFixed(2)} Days or ${((check100 / ppd) * 24).toFixed(2)} Hours` : `**100x**: ✅ Achieved`
+                            var tt500 = (check500/ppd) > 0? `**500x**: ${(check500 / ppd).toFixed(2)} Days or ${((check500 / ppd) * 24).toFixed(2)} Hours` : `**500x**: ✅ Achieved`
+                            var tt1000 = (check1000/ppd) > 0? `**1000x**: ${(check1000 / ppd).toFixed(2)} Days or ${((check1000 / ppd) * 24).toFixed(2)} Hours` : `**1000x**: ✅ Achieved`
+                            var tt1500 = (check1500/ppd) > 0? `**1500x**: ${(check1500 / ppd).toFixed(2)} Days or ${((check1500 / ppd) * 24).toFixed(2)} Hours` : `**1500x**: ✅ Achieved`
+                            var tt2000 = (check2000/ppd) > 0? `**2000x**: ${(check2000 / ppd).toFixed(2)} Days or ${((check2000 / ppd) * 24).toFixed(2)} Hours` : `**2000x**: ✅ Achieved`
+                            var tt2500 = (check2500/ppd) > 0? `**2500x**: ${(check2500 / ppd).toFixed(2)} Days or ${((check2500 / ppd) * 24).toFixed(2)} Hours` : `**2500x**: ✅ Achieved`
+                            var tt3000 = (check3000/ppd) > 0? `**3000x**: ${(check3000 / ppd).toFixed(2)} Days or ${((check3000 / ppd) * 24).toFixed(2)} Hours` : `**3000x**: ✅ Achieved`
+                            var tt3500 = (check3500/ppd) > 0? `**3500x**: ${(check3500 / ppd).toFixed(2)} Days or ${((check3500 / ppd) * 24).toFixed(2)} Hours` : `**3500x**: ✅ Achieved`
+                            var tt4000 = (check4000/ppd) > 0? `**4000x**: ${(check4000 / ppd).toFixed(2)} Days or ${((check4000 / ppd) * 24).toFixed(2)} Hours` : `**4000x**: ✅ Achieved`
+                            var tt4500 = (check4500/ppd) > 0? `**4500x**: ${(check4500 / ppd).toFixed(2)} Days or ${((check4500 / ppd) * 24).toFixed(2)} Hours` : `**4500x**: ✅ Achieved`
+                            var tt5000 = (check5000/ppd) > 0? `**5000x**: ${(check5000 / ppd).toFixed(2)} Days or ${((check5000 / ppd) * 24).toFixed(2)} Hours` : `**5000x**: ✅ Achieved`
+                            var tt5500 = (check5500/ppd) > 0? `**5500x**: ${(check5500 / ppd).toFixed(2)} Days or ${((check5500 / ppd) * 24).toFixed(2)} Hours` : `**5500x**: ✅ Achieved`
+                            var tt6000 = (check6000/ppd) > 0? `**6000x**: ${(check6000 / ppd).toFixed(2)} Days or ${((check6000 / ppd) * 24).toFixed(2)} Hours` : `**6000x**: ✅ Achieved`
+                            var tt6500 = (check6500/ppd) > 0? `**6500x**: ${(check6500 / ppd).toFixed(2)} Days or ${((check6500 / ppd) * 24).toFixed(2)} Hours` : `**6500x**: ✅ Achieved`
+                            var tt7000 = (check7000/ppd) > 0? `**7000x**: ${(check7000 / ppd).toFixed(2)} Days or ${((check7000 / ppd) * 24).toFixed(2)} Hours` : `**7000x**: ✅ Achieved`
+                            var tt7500 = (check7500/ppd) > 0? `**7500x**: ${(check7500 / ppd).toFixed(2)} Days or ${((check7500 / ppd) * 24).toFixed(2)} Hours` : `**7500x**: ✅ Achieved`
+                            var tt8000 = (check8000/ppd) > 0? `**8000x**: ${(check8000 / ppd).toFixed(2)} Days or ${((check8000 / ppd) * 24).toFixed(2)} Hours` : `**8000x**: ✅ Achieved`
+                            var tt8500 = (check8500/ppd) > 0? `**8500x**: ${(check8500 / ppd).toFixed(2)} Days or ${((check8500 / ppd) * 24).toFixed(2)} Hours` : `**8500x**: ✅ Achieved`
+                            var tt9000 = (check9000/ppd) > 0? `**9000x**: ${(check9000 / ppd).toFixed(2)} Days or ${((check9000 / ppd) * 24).toFixed(2)} Hours` : `**9000x**: ✅ Achieved`
+                            var tt9500 = (check9500/ppd) > 0? `**9500x**: ${(check9500 / ppd).toFixed(2)} Days or ${((check9500 / ppd) * 24).toFixed(2)} Hours` : `**9500x**: ✅ Achieved`
+                            var tt10000 = (check10000/ppd) > 0? `**10000x**: ${(check10000 / ppd).toFixed(2)} Days or ${((check10000 / ppd) * 24).toFixed(2)} Hours` : `**10000x**: ✅ Achieved`
 
-                            let prestigelevel = msg.content-1 //fetches prestigelevel
-                            let costperpoint = client.msgs[prestigelevel].priceperpoint
-                            client.moneyshort = require('./incomeperday.json') //money shortening json file
-                            //the bottom below are a couple of if-else statements, if the balance bpp is higher than req for multi? Write achieved,
-                            //else, calculate pp req to reach multi and then multiply it by prestige level price point
-                            //then using money shortening json file we convert the values into 2 integers and give the name of the number To make it easier
-                            var mu100x = i>0? `${((i * costperpoint)/client.moneyshort[(i * costperpoint).toString().length-1].dividedby).toFixed(2)} ${client.moneyshort[(i * costperpoint).toString().length-1].name}`: ach 
-                            var mu500x = j>0? `${((j * costperpoint)/client.moneyshort[(j * costperpoint).toString().length-1].dividedby).toFixed(2)} ${client.moneyshort[(j * costperpoint).toString().length-1].name}`: ach
-                            var mu1000x = k>0? `${((k * costperpoint)/client.moneyshort[(k * costperpoint).toString().length-1].dividedby).toFixed(2)} ${client.moneyshort[(k * costperpoint).toString().length-1].name}`: ach
-                            var mu2000x = l>0? `${((l * costperpoint)/client.moneyshort[(l * costperpoint).toString().length-1].dividedby).toFixed(2)} ${client.moneyshort[(l * costperpoint).toString().length-1].name}`: ach
-                            var mu3000x = m>0? `${((m * costperpoint)/client.moneyshort[(m * costperpoint).toString().length-1].dividedby).toFixed(2)} ${client.moneyshort[(m * costperpoint).toString().length-1].name}`: ach
-                            var mu3500x = n>0? `${((n * costperpoint)/client.moneyshort[(n * costperpoint).toString().length-1].dividedby).toFixed(2)} ${client.moneyshort[(n * costperpoint).toString().length-1].name}`: ach
-                            var mu4000x = o>0? `${((o * costperpoint)/client.moneyshort[(o * costperpoint).toString().length-1].dividedby).toFixed(2)} ${client.moneyshort[(o * costperpoint).toString().length-1].name}`: ach
-                            var mu4500x = x>0? `${((x * costperpoint)/client.moneyshort[(x * costperpoint).toString().length-1].dividedby).toFixed(2)} ${client.moneyshort[(x * costperpoint).toString().length-1].name}`: ach
+                            //the bottom is used for the dynamic input of 9 multi milestones, where 1 is achieved and 8 are potential
+
+                            // checkifach means check if achieved and multiplier number is the milestone
+                            var checkifach6000 = (check6000/ppd) > 0?  `${tt5500}
+${tt6000}
+${tt6500}                           
+${tt7000}
+${tt7500}
+${tt8000}
+${tt8500}
+${tt9000}
+${tt9500}`: `${tt6000}
+${tt6500}                           
+${tt7000}
+${tt7500}
+${tt8000}
+${tt8500}
+${tt9000}
+${tt9500}  
+${tt10000}`
+                            var checkifach5500 = (check5500/ppd) > 0? `${tt5000}
+${tt5500}                            
+${tt6000}
+${tt6500}                           
+${tt7000}
+${tt7500}
+${tt8000}
+${tt8500}
+${tt9000}` : checkifach6000
+                            var checkifach5000 = (check5000/ppd) > 0? `${tt4500}
+${tt5000}
+${tt5500}
+${tt6000}
+${tt6500}                           
+${tt7000}
+${tt7500}
+${tt8000}
+${tt8500}` : checkifach5500
+                            var checkifach4500 = (check4500/ppd) > 0? `${tt4000}
+${tt4500}  
+${tt5000}                     
+${tt5500}
+${tt6000}
+${tt6500}                           
+${tt7000}
+${tt7500}
+${tt8000}` : checkifach5000
+                            var checkifach4000 = (check4000/ppd) > 0? `${tt3500}
+${tt4000}
+${tt4500}                           
+${tt5000}
+${tt5500}
+${tt6000}
+${tt6500}
+${tt7000}
+${tt7500}` : checkifach4500
+                            var checkifach3500 = (check3500/ppd) > 0? `${tt3000}
+${tt3500}
+${tt4000}
+${tt4500}                           
+ ${tt5000}
+${tt5500}
+${tt6000}
+${tt6500}
+${tt7000}` : checkifach4000
+                            var checkifach3000 = (check3000/ppd) > 0? `${tt2500}
+${tt3000}
+${tt3500}
+${tt4000}
+${tt4500}                           
+${tt5000}
+${tt5500}
+${tt6000}
+${tt6500}` : checkifach3500
+                            var checkifach2500 = (check2500/ppd) > 0? `${tt2000}
+${tt2500}
+${tt3000}
+${tt3500}                           
+${tt4000}
+${tt4500}
+${tt5000}
+${tt5500}
+${tt6000}` : checkifach3000
+                            var checkifach2000 = (check2000/ppd) > 0? `${tt1500}
+${tt2000}
+${tt2500}
+${tt3000}
+${tt3500}                           
+${tt4000}
+${tt4500}
+${tt5000}
+${tt5500}` : checkifach2500
+                            var checkifach1500 = (check1500/ppd) > 0? `${tt1000}
+${tt1500}
+${tt2000}
+${tt2500}
+${tt3000}
+${tt3500}                           
+${tt4000}
+${tt4500}
+${tt5000}` : checkifach2000
+                            var checkifach1000 = (check1000/ppd) > 0? `${tt500}
+${tt1000}
+${tt1500}
+${tt2000}                           
+${tt2500}
+${tt3000}
+${tt3500}
+${tt4000}
+${tt4500}` : checkifach1500
+                            var checkifach500 = (check500/ppd) > 0? `${tt100}
+${tt500}
+ ${tt1000}
+${tt1500}                           
+${tt2000}
+${tt2500}
+${tt3000}
+${tt3500}
+${tt4000}` : checkifach1000
+                            var checkifach100 = (check100/ppd) > 0? `${tt100}
+${tt500}
+${tt1000}
+${tt1500}                           
+${tt2000}
+${tt2500}
+${tt3000}
+${tt3500}
+${tt4000}` : checkifach500
+                     
                             const embed1 = new Discord.MessageEmbed()
                             .setTitle("Profile Report")
                             .setAuthor(`${message.author.username}`,`${message.author.avatarURL()}`)
@@ -372,30 +554,18 @@ if(message.content === ',p'){
 **Current PP**: ${bpp.toLocaleString(`en`)}
 
 **⌛ Time until**: 
-**1 bil**: ${f}
-**10 bil**: ${g}
-**100 bil**: ${h}
+**1 bil**: ${bilpp}
+**10 bil**: ${tenbilpp}
+**100 bil**: ${hundbilpp}
+**1 tril**: ${trilpp}
+**10 tril**: ${tentrilpp}
 
 **📈 Multiplier**
-**100x**: ${q}
-**500x**: ${r}
-**1000x**: ${s}
-**2000x**: ${t}
-**3000x**: ${u}
-**3500x**: ${v}
-**4000x**: ${w}
-**4500x**: ${y}
-**📉 Suggested Prestige:**
+${checkifach100}
 
-**Money Until**
-**100x**: ${mu100x}
-**500x**: ${mu500x}
-**1000x**: ${mu1000x}
-**2000x**: ${mu2000x}
-**3000x**: ${mu3000x}
-**3500x**: ${mu3500x}
-**4000x**: ${mu4000x}
-**4500x**: ${mu4500x}
+**🎁 Gifts After Tax**
+**Max Giftable**: ${AfterTaxGive}
+**Max Receivable**: ${AfterTaxGift}
         
         `)
                             .setFooter(`Developed by The Rock#1333`,`https://cdn.discordapp.com/attachments/776985762499002408/877895083268128788/pngegg.png`)
@@ -403,6 +573,6 @@ if(message.content === ',p'){
                             message.channel.send(embed1)
                         })
                       }})})})})}
-                    }else return;
+                    ;
                 })*/
 client.login(config.token)
