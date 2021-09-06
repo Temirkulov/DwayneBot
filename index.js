@@ -184,7 +184,7 @@ If you fall behind or prestige too early, it becomes **EXTREMELY** difficult to 
     `)
     const embed7 = new Discord.MessageEmbed()
     .setColor(blue)
-    .setTitle(`Recommended Prestige Milestones`)
+    .setTitle(`💠 Recommended Prestige Milestones`)
     .setDescription(`List of potential prestige points you must have before prestiging.
 **Prestige 1:** ~1,000,000 → **(60x)**
 **Prestige 2:** ~10,000,000 → **(190x)**
@@ -202,7 +202,7 @@ If you fall behind or prestige too early, it becomes **EXTREMELY** difficult to 
 .setFooter(`Values on the right show the recommended multiplier`)
 const embed8 = new Discord.MessageEmbed()
         .setColor(blue)
-        .setTitle(`Important Note`)
+        .setTitle(`❗ Important Note`)
         .setDescription(`Since price of weekly tasks scale with income, it is recommended to prestige as soon as __weekly tasks__ **reset**.
 Moreover, if you can setup a gift for yourself after you prestige, you can save yourself alot of hours of waiting to complete your weekly tasks.
 Otherwise, increasing your income slowly to unlock the next business and purchasing ${"`$wt`"} directly can also be efficient, where briefcases could also be used to speed up the process.`)
@@ -222,10 +222,10 @@ const embed10 = new Discord.MessageEmbed()
 > **1bil - 9.9bil pp (10 digits)** → 100 coins, 9 briefcases
 > **10bil - 99.9bil pp (11 digits)** → 121 coins, 10 briefcases
 > **100bil - 999.9bil pp (12 digits)** → 144 coins, 11 briefcases`)
-        .setFooter(`No. of coins = digits of pp **squared**, No of briefcases = digits of pp - 1`)
+        .setFooter(`No. of coins = digits of pp squared, No of briefcases = digits of pp - 1`)
         const embed11 = new Discord.MessageEmbed()
         .setColor(blue)
-        .setTitle(`How to Invest your Prestige Points`)
+        .setTitle(`📈 How to Invest your Prestige Points`)
         .setDescription(`There are multiple of ways to plan and invest your prestige points.
 To calculate the multiplier you will receive, you can use ${'`~pcalc`'}, which takes into account the **price of caps**.
 To know how much prestige points you need to reach a **desired multiplier**, you can use ${'$$mcalc'}.
